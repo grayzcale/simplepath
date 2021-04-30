@@ -12,11 +12,17 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 #### Constructor:
 |*`Path`* SimplePath.new(*`Model model`*, *`[Optional] Dictionary agentParamters`*)|
 |:-|
-|● *Creates a new Path* <br> ● *`model` must by a Model Instance with a PrimaryPart* <br> ● *Click [here][agentParametersLink] to find out more about `agentParameters` (may be required for custom humanoids)*|
+|● *Creates a new Path Object* <br> ● *`model` must by a Model Instance with a PrimaryPart* <br> ● *Click [here][agentParametersLink] to find out more about `agentParameters` (may be required for custom humanoids)*|
+
+|Status|Description|
+|-|-|
+|SimplePath.Status.PathCompleted|The goal is reached and pathfinding has ended.|
+|SimplePath.Status.PathNotFound|Pathfinding is not possible.|
+|SimplePath.Status.PathBlocked|There is an obstruction.|
 
 <br>
 
-### Path:
+### Path Object:
 
 #### Properties:
 |*`boolean`* Path.Visualize `Default: false`|
@@ -36,7 +42,7 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 
 |*`void`* Path:Stop(*`String status`*)|
 |:-|
-|● *Stops moving the humanoid* <br> ● *Triggers the `Stopped` event with the given `status`*|
+|● *Stops moving the humanoid* <br> ● *Triggers the [`Stopped`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event with the given `status`*|
 |Note: does not exist for non-humanoid models.|
 
 |*`void`* Path:Destroy()|
@@ -63,7 +69,5 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |:-|
 |● *Fires when the `model` reaches the next waypoint*|
 |Note: logic for non-humanoid models must be done using this event. See examples for more details.|
-
-
 
 [agentParametersLink]:https://developer.roblox.com/en-us/api-reference/function/PathfindingService/CreatePath
