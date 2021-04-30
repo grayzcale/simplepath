@@ -7,6 +7,8 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 
 >Get SimplePath from the [Roblox library](https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module)
 
+<br>
+
 ## API
 
 #### Constructor:
