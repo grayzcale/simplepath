@@ -16,6 +16,15 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 
 ### Path:
 
+#### Properties:
+|*`boolean`* Path.Visualize `Default: false`|
+|:-|
+|● *Set to true to visualize waypoints*|
+
+|*`boolean`* Path.IgnoreObstacles `Default: true`|
+|:-|
+|● *Set to true to recalculate path when the path is blocked*|
+
 #### Methods:
 |*`boolean`* Path:Run(*`BasePart/Vector3 goal`*)|
 |:-|
@@ -26,9 +35,28 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |● *Stops moving the humanoid* <br> ● *Triggers the `Stopped` event with the given `status`*|
 |Note: does not exist for non-humanoid models|
 
-
 |*`void`* Path:Destroy()|
 |:-|
+
+#### Events:
+|*`RBXScriptSignal`* Path.Reached(*`Model model`*)|
+|:-|
+|● *Fires when pathfinding is complete*|
+
+|*`RBXScriptSignal`* Path.Blocked(*`Model model`*)|
+|:-|
+|● *Fires when there is an obstruction*|
+|Note: does not exist for non-humanoid models|
+
+|*`RBXScriptSignal`* Path.Stopped(*`String status`*)|
+|:-|
+|● *Fires when pathfinding stopped for any reason*|
+|Note: does not exist for non-humanoid models|
+
+|*`RBXScriptSignal`* Path.WaypointReached(*`Model model`*, *`Vector3 previousPosition`*, *`Vector3 nextPosition`*)|
+|:-|
+|● *Fires when the `model` reaches the next waypoint*|
+|Note: Logic for non-humanoid models must be done using this event. See examples for more details|
 
 
 
