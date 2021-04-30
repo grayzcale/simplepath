@@ -24,7 +24,11 @@ or get it from the [Roblox library](https://www.roblox.com/library/6744337775/Si
 
 ## Path:
 
-
+### Methods:
+|*`boolean`* Path:Run(*`BasePart/Vector3 goal`*)|
+|:-|
+|● ***Returns false if pathfinding is not possible*** <br> ● *`goal` must by a BasePart or Vector3*|
+|Note: Only for Humanoid models|
 
 
 [agentParametersLink]:https://developer.roblox.com/en-us/api-reference/function/PathfindingService/CreatePath
