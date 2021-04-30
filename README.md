@@ -47,7 +47,7 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 
 |*`void`* Path:Stop(*`String status`*)|
 |:-|
-|● *Stops moving the humanoid* <br> ● *Triggers the [`Stopped`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event with the given `status`*|
+|● *Stops moving the model (only for humanoids)* <br> ● *Triggers the [`Stopped`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event with the given `status`*|
 
 |*`void`* Path:Destroy()|
 |:-|
@@ -72,6 +72,6 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |*`RBXScriptSignal`* Path.WaypointReached(*`Model model`*, *`Vector3 previousPosition`*, *`Vector3 nextPosition`*)|
 |:-|
 |● *Fires when the `model` reaches the next waypoint*|
-|Note: logic for non-humanoid models must be done using this event. See examples for more details.|
+|Note: If using non-humanoid models, move the model using this event, wait any amount to prevent exhaustion, and then run Path:Run() to notify the end of movement. See [examples](https://github.com/00xima/SimplePath/blob/main/EXAMPLES.md#non-humanoid-example) for more details.|
 
 [agentParametersLink]:https://developer.roblox.com/en-us/api-reference/function/PathfindingService/CreatePath
