@@ -15,11 +15,16 @@ local SimplePath = require(6744337775)
 or get it from the [Roblox library](https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module)
 </details>
 
-## API
+# API
 
-|Constructor:|
-|:-|
+### Constructor:
 |*`Path`* SimplePath.new(*`Model model`*, *`[Optional] Dictionary agentParamters`*)|
-|● *Creates a new Path object* <br> ● *`model` must by a Model Instance* <br> ● *Click [here][agentParametersLink] to find out more about `agentParameters`*|
+|:-|
+|● *Creates a new Path* <br> ● *`model` must by a Model Instance* <br> ● *Click [here][agentParametersLink] to find out more about `agentParameters`*|
+
+## Path:
+
+
+
 
 [agentParametersLink]:https://developer.roblox.com/en-us/api-reference/function/PathfindingService/CreatePath
