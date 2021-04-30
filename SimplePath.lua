@@ -81,8 +81,8 @@ local function WaypointReached(self, reached)
 		if self._waypoint < #self._waypoints then
 			self._waypoint += 1
 		else
-			self._signals.Reached:Fire(self._model)
 			self:Stop(self.Status.PathCompleted)
+			self._signals.Reached:Fire(self._model)
 		end
 		return
 	end
@@ -92,12 +92,12 @@ local function WaypointReached(self, reached)
 		self._waypoint += 1
 		Move(self)
 	elseif reached then
-		self._signals.Reached:Fire(self._model)
 		self:Stop(self.Status.PathCompleted)
+		self._signals.Reached:Fire(self._model)
 	else
-		self._signals.Blocked:Fire(self._model)
-		self:Stop(self.Status.PathBlocked)
 		RetryPath(self)
+		self:Stop(self.Status.PathBlocked)
+		self._signals.Blocked:Fire(self._model)
 	end
 end
 
@@ -147,9 +147,9 @@ end
 
 --Execute when the humanoid doesn't reach waypoint in time
 local function Timeout(self)
-	self._signals.Blocked:Fire(self._model)
-	self:Stop(self.Status.PathBlocked)
 	RetryPath(self)
+	self:Stop(self.Status.PathBlocked)
+	self._signals.Blocked:Fire(self._model)
 end
 
 function Path.new(model, agentParameters)
