@@ -2,18 +2,10 @@
 
 # SimplePath - Pathfinding Module
 
-The SimplePath module gives you the ability to create a pathfinding script quickly in the shortest amount of code; pathfinding is done using [PathfindingService](https://developer.roblox.com/en-us/api-reference/class/PathfindingService) provided by Roblox.
+The SimplePath module gives you the ability to create a pathfinding script quickly with the shortest amount of code; pathfinding on this module is done using the methods from  [PathfindingService](https://developer.roblox.com/en-us/api-reference/class/PathfindingService).
 <br>
 
-<details>
-<summary>Get SimplePath</summary>
-<br>
-  
-```lua
-local SimplePath = require(6744337775)
-```
-or get it from the [Roblox library](https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module)
-</details>
+>Get SimplePath from the [Roblox library](https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module)
 
 ## API
 
