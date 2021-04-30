@@ -4,26 +4,24 @@
 
 Change part color after pathfinding ends:
 ```lua
-local Path = SimplePath.new(model) --Create new Path
+local Path = SimplePath.new(workspace.Dummy)
 
-Path:Run(goal) --Move the humanoid
-Path.Reached:Wait() --Wait until Rig reaches the final position
-goal.BrickColor = BrickColor.new("Bright green") --Change part color
+Path:Run(workspace.Goal)
+Path.Reached:Wait()
 
-Path:Destroy() --Destroy Path object after use
+workspace.Goal.BrickColor = BrickColor.new("Bright green")
+Path:Destroy()
 ```
 
 <br>
 
-Spam `Path:Run()` as the goal position changes:
+Spam `Path:Run()`:
 ```lua
-local model = workspace:WaitForChild("Dummy") --Get humanoid model
-local goal = workspace:WaitForChild("Goal") --Get goal part
-local path = SimplePath.new(model) --Create new Path
-
-goal:GetPropertyChangedSignal("Position"):Connect(function()
-	path:Run(goal)  --Move the humanoid as the goal position changes
-end)
+local Path = SimplePath.new(workspace.Dummy)
+while true do
+	Path:Run(workspace.Goal)
+	wait()
+end
 ```
 
 <br>
@@ -32,19 +30,3 @@ end)
 
 <br>
 
-Change part color after pathfinding ends:
-```lua
-
-Path.Reached:Connect(function()
-	Goal.BrickColor = BrickColor.new("Bright green") --Change color of goal part when pathfinding ends
-end)
-
---define movement logic using the WaypointReached event
-Path.WaypointReached:Connect(function(model, previousPosition, nextPosition)
-	model:SetPrimaryPartCFrame(CFrame.new(nextPosition, previousPosition + (nextPosition - previousPosition).Unit * 4)) --Move model to next position facing nextPosition
-	wait(0.1) --Some type of wait is required to prevent exhaustion
-	path:Run() --Let the Path know movement is done
-end)
-
-path:Run(goal) --Move to the goal only once initially
-```
