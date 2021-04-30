@@ -12,15 +12,20 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 #### Constructor:
 |*`Path`* SimplePath.new(*`Model model`*, *`[Optional] Dictionary agentParamters`*)|
 |:-|
-|● *Creates a new Path* <br> ● *`model` must by a Model Instance* <br> ● *Click [here][agentParametersLink] to find out more about `agentParameters`*|
+|● *Creates a new Path* <br> ● *`model` must by a Model Instance with a PrimaryPart* <br> ● *Click [here][agentParametersLink] to find out more about `agentParameters` (may be required for custom humanoids)*|
 
 ### Path:
 
 #### Methods:
 |*`boolean`* Path:Run(*`BasePart/Vector3 goal`*)|
 |:-|
-|● ***Returns false if pathfinding is not possible*** <br> ● *`goal` must by a BasePart or Vector3*|
-|Note: Only for Humanoid models|
+|● ***Returns false if pathfinding is not possible, make sure to handle it*** <br> ● *`goal` must by a BasePart or a Vector3 position*|
+<br>
+
+|*`void`* Path:Stop(*`String status`*)|
+|:-|
+|● *Stops moving the humanoid* <br> ● *Triggers the `Stopped` event with the given `status`*|
+|Note: does not exist for non-humanoid models|
 
 
 [agentParametersLink]:https://developer.roblox.com/en-us/api-reference/function/PathfindingService/CreatePath
