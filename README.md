@@ -20,12 +20,16 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |*`boolean`* Path:Run(*`BasePart/Vector3 goal`*)|
 |:-|
 |● ***Returns false if pathfinding is not possible, make sure to handle it*** <br> ● *`goal` must by a BasePart or a Vector3 position*|
-<br>
 
 |*`void`* Path:Stop(*`String status`*)|
 |:-|
 |● *Stops moving the humanoid* <br> ● *Triggers the `Stopped` event with the given `status`*|
 |Note: does not exist for non-humanoid models|
+
+
+|*`void`* Path:Destroy()|
+|:-|
+
 
 
 [agentParametersLink]:https://developer.roblox.com/en-us/api-reference/function/PathfindingService/CreatePath
