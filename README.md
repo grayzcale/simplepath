@@ -64,9 +64,9 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |● *Fires when there is an obstruction*|
 |Note: does not exist for non-humanoid models.|
 
-|*`RBXScriptSignal`* Path.Stopped(*`String status`*)|
+|*`RBXScriptSignal`* Path.Stopped(*`Model model`*, *`String status`*)|
 |:-|
-|● *Fires when pathfinding stopped for any reason*|
+|● *Fires if pathfinding stopped for any reason represented by `status`*|
 |Note: does not exist for non-humanoid models|
 
 |*`RBXScriptSignal`* Path.WaypointReached(*`Model model`*, *`Vector3 previousPosition`*, *`Vector3 nextPosition`*)|
