@@ -18,6 +18,6 @@ or get it from the [Roblox library](https://www.roblox.com/library/6744337775/Si
 |Constructor:|
 |:-|
 |`Path` SimplePath.new(`Model model`, `Dictionary agentParamters`)|
-|● *`model` must by a Model Instance* <br> ● *Click [here][agentParametersLink] to find out more about `agentParameters`*|
+|● *`model` must by a Model Instance* <br> ● *Click [here][agentParametersLink] to find out more about `agentParameters`* <br> ● *Creates a new Path object*|
 
 [agentParametersLink]:https://developer.roblox.com/en-us/api-reference/function/PathfindingService/CreatePath
