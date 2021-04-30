@@ -18,8 +18,7 @@ displayPart.Material = Enum.Material.Neon
 
 local nonHumanoidRestrictions = {
 	Blocked = ":Blocked()";
-	Stop = ":Stop()";
-	Stopped = "Stopped event"
+	Stopped = "Stopped event";
 }
 local Path = {
 	Status = {
@@ -66,22 +65,23 @@ local function JumpDetect(self)
 	end
 end
 
---Get return values for WaypointReached
-local function GetWaypointReached(self)
+--Check and fire the WaypointReached event
+local function FireWaypointReached(self)
 	local lastPos = (self._waypoint - 1 > 0 and self._waypoints[self._waypoint - 1].Position) or self._model.PrimaryPart.Position
 	local nextPos = self._waypoints[self._waypoint].Position
-	return self._model, lastPos, nextPos
+	if lastPos == nextPos then return end
+	self._signals.WaypointReached:Fire(self._model, lastPos, nextPos)
 end
 
 --Execute when humanoid reaches waypoint
 local function WaypointReached(self, reached)
-	self._signals.WaypointReached:Fire(GetWaypointReached(self))
+	FireWaypointReached(self)
 	
 	if not self._humanoid then
 		if self._waypoint < #self._waypoints then
 			self._waypoint += 1
 		else
-			self:Stop(self.Status.PathCompleted)
+			self:Stop(self.Status.Reached)
 			self._signals.Reached:Fire(self._model)
 		end
 		return
