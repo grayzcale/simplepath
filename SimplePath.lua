@@ -211,10 +211,10 @@ function Path:Run(goal)
 		WaypointReached(self, true)
 		return
 	end
-	assert((goal:IsA("BasePart") or typeof(goal) == "Vector3"), "Goal must be a valid BasePart or a Vector3 position")
+	assert((typeof(goal) == "Vector3" or goal:IsA("BasePart")), "Goal must be a valid BasePart or a Vector3 position")
 	
 	local initialPosition = self._model.PrimaryPart.Position
-	local finalPosition = (goal:IsA("BasePart") and goal.Position) or goal
+	local finalPosition = (typeof(goal) == "Vector3" and goal) or goal.Position
 	local success, msg = pcall(function()
 		self._path:ComputeAsync(initialPosition, finalPosition)
 	end)
