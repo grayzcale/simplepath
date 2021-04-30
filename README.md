@@ -14,7 +14,9 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |:-|
 |● *Creates a new Path Object* <br> ● *`model` must by a Model Instance with a PrimaryPart* <br> ● *Click [here][agentParametersLink] to find out more about `agentParameters` (may be required for custom humanoids)*|
 
-|Status|Description|
+<br>
+
+|Status Types|Description|
 |-|-|
 |SimplePath.Status.PathCompleted|The goal is reached and pathfinding has ended.|
 |SimplePath.Status.PathNotFound|Pathfinding is not possible.|
