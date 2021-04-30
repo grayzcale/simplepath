@@ -14,6 +14,8 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |:-|
 |● *Creates a new Path* <br> ● *`model` must by a Model Instance with a PrimaryPart* <br> ● *Click [here][agentParametersLink] to find out more about `agentParameters` (may be required for custom humanoids)*|
 
+<br>
+
 ### Path:
 
 #### Properties:
@@ -23,7 +25,9 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 
 |*`boolean`* Path.IgnoreObstacles `Default: true`|
 |:-|
-|● *Set to true to recalculate path when the path is blocked*|
+|● *Set to true to automatically recalculate path when the path is blocked*|
+
+<br>
 
 #### Methods:
 |*`boolean`* Path:Run(*`BasePart/Vector3 goal`*)|
@@ -33,10 +37,12 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |*`void`* Path:Stop(*`String status`*)|
 |:-|
 |● *Stops moving the humanoid* <br> ● *Triggers the `Stopped` event with the given `status`*|
-|Note: does not exist for non-humanoid models|
+|Note: does not exist for non-humanoid models.|
 
 |*`void`* Path:Destroy()|
 |:-|
+
+<br>
 
 #### Events:
 |*`RBXScriptSignal`* Path.Reached(*`Model model`*)|
@@ -46,7 +52,7 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |*`RBXScriptSignal`* Path.Blocked(*`Model model`*)|
 |:-|
 |● *Fires when there is an obstruction*|
-|Note: does not exist for non-humanoid models|
+|Note: does not exist for non-humanoid models.|
 
 |*`RBXScriptSignal`* Path.Stopped(*`String status`*)|
 |:-|
@@ -56,7 +62,7 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |*`RBXScriptSignal`* Path.WaypointReached(*`Model model`*, *`Vector3 previousPosition`*, *`Vector3 nextPosition`*)|
 |:-|
 |● *Fires when the `model` reaches the next waypoint*|
-|Note: Logic for non-humanoid models must be done using this event. See examples for more details|
+|Note: logic for non-humanoid models must be done using this event. See examples for more details.|
 
 
 
