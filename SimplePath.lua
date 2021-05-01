@@ -15,6 +15,7 @@ displayPart.Anchored = true
 displayPart.CanCollide = false
 displayPart.Color = Color3.fromRGB(255, 255, 255)
 displayPart.Material = Enum.Material.Neon
+displayPart.Shape = Enum.PartType.Ball
 
 local nonHumanoidRestrictions = {
 	Blocked = ":Blocked()";
