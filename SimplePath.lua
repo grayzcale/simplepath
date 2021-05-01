@@ -38,7 +38,7 @@ end
 local function RetryPath(self)
 	if self.IgnoreObstacles and self._goal then
 		self._humanoid.Jump = true
-		self._model.PrimaryPart.Velocity = self._model.PrimaryPart.CFrame.LookVector * 2
+		self._active = false
 		self:Run(self._goal)
 	end
 end
@@ -76,7 +76,7 @@ end
 --Execute when humanoid reaches waypoint
 local function WaypointReached(self, reached)
 	FireWaypointReached(self)
-	
+
 	if not self._humanoid then
 		if self._waypoint < #self._waypoints then
 			self._waypoint += 1
@@ -86,7 +86,7 @@ local function WaypointReached(self, reached)
 		end
 		return
 	end
-	
+
 	if reached and self._waypoint < #self._waypoints then	
 		JumpDetect(self)
 		self._waypoint += 1
@@ -154,7 +154,7 @@ end
 
 function Path.new(model, agentParameters)
 	assert(model:IsA("Model") and model.PrimaryPart, "model must by a valid Model Instance with a set PrimaryPart")
-	
+
 	local self = setmetatable({
 		_signals = {
 			Reached = Instance.new("BindableEvent");
@@ -168,7 +168,7 @@ function Path.new(model, agentParameters)
 		_humanoid = model:FindFirstChildOfClass("Humanoid") or false;
 		IgnoreObstacles = true;
 	}, Path)
-	
+
 	if self._humanoid then
 		self._connections = {self._humanoid.MoveToFinished:Connect(function(reached)
 			if self._active then
@@ -178,7 +178,7 @@ function Path.new(model, agentParameters)
 		end);
 		}
 	end
-	
+
 	pcall(function() self._model.PrimaryPart:SetNetworkOwner(nil) end)
 	return self
 end
@@ -206,13 +206,13 @@ function Path:Stop(status)
 end
 
 function Path:Run(goal)
-	
+
 	if not goal and not self._humanoid and self._goal then
 		WaypointReached(self, true)
 		return
 	end
 	assert(goal and (typeof(goal) == "Vector3" or goal:IsA("BasePart")), "Goal must be a valid BasePart or a Vector3 position")
-	
+
 	local initialPosition = self._model.PrimaryPart.Position
 	local finalPosition = (typeof(goal) == "Vector3" and goal) or goal.Position
 	local success, msg = pcall(function()
@@ -222,19 +222,19 @@ function Path:Run(goal)
 		self:Stop(self.Status.PathNotFound)
 		return false
 	end
-	
+
 	self._waypoints = (self._active and CleanWaypoints(self, self._path:GetWaypoints(), finalPosition)) or self._path:GetWaypoints()
 	self._waypoint = 1
 	self._goal = goal
 	DestroyWaypoints(self._displayParts)
 	self._displayParts = (self.Visualize and CreateWaypoints(self._waypoints))
-	
+
 	if not self._humanoid then
 		self._waypoint = GetNonHumanoidWaypoint(self)
 		WaypointReached(self, true)
 		return
 	end
-	
+
 	if not self._active then
 		self._active = true
 		Move(self)
@@ -247,7 +247,7 @@ function Path:Run(goal)
 			end
 		end)()
 	end
-	
+
 	return true
 end
 
