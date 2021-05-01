@@ -44,6 +44,7 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |*`boolean`* Path:Run(*`BasePart/Vector3 goal`*)|
 |:-|
 |● ***Returns false if pathfinding is not possible, make sure to handle it*** <br> ● *`goal` must by a BasePart or a Vector3 position*|
+|Note: for non-humanoid models, after using `Path:Run(goal)` once, execute `Path:Run()` inside of the [`WaypointReached`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event to let the Path know that the model has completed movement for the current waypoint. See [examples](https://github.com/00xima/SimplePath/blob/main/EXAMPLES.md#non-humanoid-example) for more details.|
 
 |*`void`* Path:Stop(*`String status`*)|
 |:-|
