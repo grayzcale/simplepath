@@ -39,6 +39,7 @@ end
 local function RetryPath(self)
 	if self.IgnoreObstacles and self._goal then
 		self._humanoid.Jump = true
+		self._model.PrimaryPart.Velocity = self._model.PrimaryPart.CFrame.LookVector * 2
 		self._active = false
 		self:Run(self._goal)
 	end
