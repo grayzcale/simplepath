@@ -167,7 +167,7 @@ end
 function Path.GetRandomPosition(part)
 	assert(part:IsA("BasePart"), "part must be a valid BasePart")
 	local faces = {X = GetFacingSide(part, "X"), Y = GetFacingSide(part, "Y"), Z = GetFacingSide(part, "Z")}
-	local p0 = part.Position + Vector3.new(0, part.Size[faces.X] / 2, 0) + Vector3.new(0, part.Size[faces.Y] / 2, 0)
+	local p0 = part.Position + Vector3.new(0, (part.Size[faces.X] / 2) + 1, 0) + Vector3.new(0, part.Size[faces.Y] / 2, 0)
 	local x = part.Position.X + GetNum(-part.Size[faces.X] / 2, part.Size[faces.X] / 2)
 	local y = part.Position.Y + GetNum(-part.Size[faces.Y] / 2, part.Size[faces.Y] / 2)
 	local z = part.Position.Z + GetNum(-part.Size[faces.Z] / 2, part.Size[faces.Z] / 2)
