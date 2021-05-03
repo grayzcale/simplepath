@@ -164,7 +164,7 @@ local function GetFacingSide(part, face)
 	return facing
 end
 
-function Path.GetRandom(part)
+function Path.GetRandomPosition(part)
 	assert(part:IsA("BasePart"), "part must be a valid BasePart")
 	local faces = {X = GetFacingSide(part, "X"), Y = GetFacingSide(part, "Y"), Z = GetFacingSide(part, "Z")}
 	local p0 = part.Position + Vector3.new(0, part.Size[faces.X] / 2, 0) + Vector3.new(0, part.Size[faces.Y] / 2, 0)
@@ -176,7 +176,7 @@ function Path.GetRandom(part)
 	params.FilterType = Enum.RaycastFilterType.Whitelist
 	params.FilterDescendantsInstances = {part}
 	local result = workspace:Raycast(p0, (p1 - p0).Unit * (part.Size.X * part.Size.Y * part.Size.Z))	
-	return (result and result.Position and result.Position + Vector3.new(0, 1 / 2, 0)) or Path.GetRandom(part)
+	return (result and result.Position and result.Position + Vector3.new(0, 1 / 2, 0)) or Path.GetRandomPosition(part)
 end
 
 function Path.GetNearestCharacter(part)
