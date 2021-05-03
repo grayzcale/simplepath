@@ -22,15 +22,15 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 #### Static Methods:
 |*`Vector3`* SimplePath.GetRandomPosition(*`BasePart part`*)|
 |:-|
-|● *Returns random point on the provided part for pathfinding* <br> ● *`part` must by a BasePart*|
+|● *Returns random position on the provided part for pathfinding*|
 
 |*`Model`* SimplePath.GetNearestCharacter(*`BasePart part`*)|
 |:-|
-|● *Returns closest character model to `part`* <br> ● *`part` must by a BasePart*|
+|● *Returns closest character model to `part`*|
 
 |*`Vector3`* SimplePath.GetNearestCharacterPosition(*`BasePart part`*)|
 |:-|
-|● *Returns closest character position to `part`* <br> ● *`part` must by a BasePart*|
+|● *Returns closest character position to `part`*|
 |Note: same as *`SimplePath.GetNearestCharacter(part).PrimaryPart.Position`*.|
 
 <br>
