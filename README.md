@@ -1,4 +1,4 @@
-![Version: 1.0](https://img.shields.io/badge/Version-1.0-blue?style=for-the-badge)
+![Version: 1.01](https://img.shields.io/badge/Version-1.01-blue?style=for-the-badge)
 
 # SimplePath - Pathfinding Module
 
