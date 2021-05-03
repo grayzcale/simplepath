@@ -7,6 +7,7 @@ API: https://github.com/00xima/SimplePath
 
 local PathfindingService = game:GetService("PathfindingService")
 local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
 
 --Used to display waypoints
 local displayPart = Instance.new("Part")
@@ -34,12 +35,13 @@ Path.__index = function(tab, index)
 	end
 	return (tab._signals[index] and tab._signals[index].Event) or Path[index]
 end
+local function GetNum(i, j) return Random.new(tick()):NextNumber(i, j) end
 
 --Execute if Path.IgnoreObstacles is true
 local function RetryPath(self)
 	if self.IgnoreObstacles and self._goal then
 		self._humanoid.Jump = true
-		self._model.PrimaryPart.Velocity = self._model.PrimaryPart.CFrame.LookVector * 2
+		self._model.PrimaryPart.Velocity = (self._model.PrimaryPart.CFrame.LookVector * self._humanoid.WalkSpeed * 3) + Vector3.new(0, self._humanoid.JumpPower, 0)
 		self._active = false
 		self:Run(self._goal)
 	end
@@ -119,7 +121,7 @@ end
 local function GetNonHumanoidWaypoint(self)
 	for i, waypoint in ipairs(self._waypoints) do
 		local mag = (waypoint.Position - self._model.PrimaryPart.Position).Magnitude
-		if mag > 1 then
+		if mag > 2 then
 			return i
 		end
 	end
@@ -152,6 +154,46 @@ local function Timeout(self)
 	RetryPath(self)
 	self:Stop(self.Status.PathBlocked)
 	self._signals.Blocked:Fire(self._model)
+end
+
+local function GetFacingSide(part, face)
+	local facing, val = nil, -7
+	if math.abs(part.CFrame.LookVector[face]) >= val then val = math.abs(part.CFrame.LookVector[face]); facing = "Z" end
+	if math.abs(part.CFrame.UpVector[face]) >= val then val = math.abs(part.CFrame.UpVector[face]); facing = "Y" end
+	if math.abs(part.CFrame.RightVector[face]) >= val then val = math.abs(part.CFrame.RightVector[face]); facing = "X" end
+	return facing
+end
+
+function Path.GetRandom(part)
+	assert(part:IsA("BasePart"), "part must be a valid BasePart")
+	local faces = {X = GetFacingSide(part, "X"), Y = GetFacingSide(part, "Y"), Z = GetFacingSide(part, "Z")}
+	local p0 = part.Position + Vector3.new(0, part.Size[faces.X] / 2, 0) + Vector3.new(0, part.Size[faces.Y] / 2, 0)
+	local x = part.Position.X + GetNum(-part.Size[faces.X] / 2, part.Size[faces.X] / 2)
+	local y = part.Position.Y + GetNum(-part.Size[faces.Y] / 2, part.Size[faces.Y] / 2)
+	local z = part.Position.Z + GetNum(-part.Size[faces.Z] / 2, part.Size[faces.Z] / 2)
+	local p1 = Vector3.new(x, y, z)
+	local params = RaycastParams.new()
+	params.FilterType = Enum.RaycastFilterType.Whitelist
+	params.FilterDescendantsInstances = {part}
+	local result = workspace:Raycast(p0, (p1 - p0).Unit * (part.Size.X * part.Size.Y * part.Size.Z))	
+	return (result and result.Position and result.Position + Vector3.new(0, 1 / 2, 0)) or Path.GetRandom(part)
+end
+
+function Path.GetNearestCharacter(part)
+	assert(part:IsA("BasePart"), "part must be a valid BasePart")
+	local c, m = nil, -1
+	for _, p in ipairs(Players:GetPlayers()) do
+		if p.Character and (p.Character.PrimaryPart.Position - part.Position).Magnitude > m then
+			c, m = p.Character, (p.Character.PrimaryPart.Position - part.Position).Magnitude
+		end 
+	end
+	return c
+end
+
+function Path.GetNearestCharacterPosition(part)
+	assert(part:IsA("BasePart"), "part must be a valid BasePart")
+	local model = Path.GetNearestCharacter(part)
+	return (model and model.PrimaryPart.Position)
 end
 
 function Path.new(model, agentParameters)
