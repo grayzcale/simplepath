@@ -19,6 +19,22 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 
 <br>
 
+#### Static Methods:
+|*`Vector3`* SimplePath.GetRandomPosition(*`BasePart part`*)|
+|:-|
+|● *Returns random point on the provided part for pathfinding* <br> ● *`part` must by a BasePart*|
+
+|*`Model`* SimplePath.GetNearestCharacter(*`BasePart part`*)|
+|:-|
+|● *Returns closest character model to `part`* <br> ● *`part` must by a BasePart*|
+
+|*`Vector3`* SimplePath.GetNearestCharacterPosition(*`BasePart part`*)|
+|:-|
+|● *Returns closest character position to `part`* <br> ● *`part` must by a BasePart*|
+|Note: same as *`SimplePath.GetNearestCharacter(part).PrimaryPart.Position`*.|
+
+<br>
+
 |Status Types|Description|
 |-|-|
 |SimplePath.Status.PathCompleted|The goal is reached and pathfinding has ended.|
