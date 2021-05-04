@@ -222,8 +222,6 @@ function Path.new(model, agentParameters)
 		end);
 		}
 	end
-
-	pcall(function() self._model.PrimaryPart:SetNetworkOwner(nil) end)
 	return self
 end
 
@@ -256,6 +254,7 @@ function Path:Run(goal)
 		return
 	end
 	assert(goal and (typeof(goal) == "Vector3" or goal:IsA("BasePart")), "Goal must be a valid BasePart or a Vector3 position")
+	pcall(function() self._model.PrimaryPart:SetNetworkOwner(nil) end)
 
 	local initialPosition = self._model.PrimaryPart.Position
 	local finalPosition = (typeof(goal) == "Vector3" and goal) or goal.Position
