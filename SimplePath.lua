@@ -225,7 +225,7 @@ function Path.new(model, agentParameters)
 end
 
 function Path:SetHipHeight(hipHeight)
-	assert(type(hipHeight) == "number", "HipHeight must be a valid number above 0")
+	assert(type(hipHeight) == "number" and hipHeight > 0, "HipHeight must be a valid number above 0")
 	self._hipHeight = hipHeight
 end
 
