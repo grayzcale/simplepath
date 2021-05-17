@@ -20,7 +20,6 @@ displayPart.Shape = Enum.PartType.Ball
 
 local nonHumanoidRestrictions = {
 	Blocked = ":Blocked()";
-	Stopped = "Stopped event";
 }
 local Path = {
 	Status = {
@@ -63,7 +62,7 @@ local function JumpDetect(self)
 		local p1 = self._waypoints[self._waypoint + 1].Position
 		local pos = (p1 - p0).Unit * ((p1 - p0).Magnitude / 2) + p0
 		local raycast = workspace:Raycast(pos + Vector3.new(0, 0.1, 0), Vector3.new(0, -1000, 0))
-		if (p1.Y - p0.Y  >= self._humanoid.HipHeight) or (raycast and p1.Y - raycast.Position.Y  >= self._humanoid.HipHeight) then
+		if (p1.Y - p0.Y  >= self._hipHeight) or (raycast and p1.Y - raycast.Position.Y  >= self._hipHeight) then
 			self._humanoid.Jump = true
 		end
 	end
@@ -165,7 +164,7 @@ local function GetFacingSide(part, face)
 end
 
 function Path.GetRandomPosition(part)
-	assert(part:IsA("BasePart"), "part must be a valid BasePart")
+	assert(part:IsA("BasePart"), "Part must be a valid BasePart")
 	local faces = {X = GetFacingSide(part, "X"), Y = GetFacingSide(part, "Y"), Z = GetFacingSide(part, "Z")}
 	local p0 = part.Position + Vector3.new(0, (part.Size[faces.X] / 2) + 1, 0) + Vector3.new(0, part.Size[faces.Y] / 2, 0)
 	local x = part.Position.X + GetNum(-part.Size[faces.X] / 2, part.Size[faces.X] / 2)
@@ -180,7 +179,7 @@ function Path.GetRandomPosition(part)
 end
 
 function Path.GetNearestCharacter(part)
-	assert(part:IsA("BasePart"), "part must be a valid BasePart")
+	assert(part:IsA("BasePart"), "Part must be a valid BasePart")
 	local c, m = nil, -1
 	for _, p in ipairs(Players:GetPlayers()) do
 		if p.Character and (p.Character.PrimaryPart.Position - part.Position).Magnitude > m then
@@ -191,13 +190,13 @@ function Path.GetNearestCharacter(part)
 end
 
 function Path.GetNearestCharacterPosition(part)
-	assert(part:IsA("BasePart"), "part must be a valid BasePart")
+	assert(part:IsA("BasePart"), "Part must be a valid BasePart")
 	local model = Path.GetNearestCharacter(part)
 	return (model and model.PrimaryPart.Position)
 end
 
 function Path.new(model, agentParameters)
-	assert(model:IsA("Model") and model.PrimaryPart, "model must by a valid Model Instance with a set PrimaryPart")
+	assert(model:IsA("Model") and model.PrimaryPart, "Model must by a valid Model Instance with a set PrimaryPart")
 
 	local self = setmetatable({
 		_signals = {
@@ -214,15 +213,20 @@ function Path.new(model, agentParameters)
 	}, Path)
 
 	if self._humanoid then
+		self._hipHeight = self._humanoid.HipHeight
 		self._connections = {self._humanoid.MoveToFinished:Connect(function(reached)
 			if self._active then
 				self._elapsed = tick()
 				WaypointReached(self, reached)
 			end
-		end);
-		}
+		end)}
 	end
 	return self
+end
+
+function Path:SetHipHeight(hipHeight)
+	assert(type(hipHeight) == "number" and hipHeight > 0, "HipHeight must be a valid number above 0")
+	self._hipHeight = hipHeight
 end
 
 function Path:Destroy()
@@ -254,6 +258,7 @@ function Path:Run(goal)
 		return
 	end
 	assert(goal and (typeof(goal) == "Vector3" or goal:IsA("BasePart")), "Goal must be a valid BasePart or a Vector3 position")
+	assert(self._hipHeight ~= 0, "Chracter hipHeight is 0; set a new hipHeight using Path:SetHipHeight() before using Path:Run()")
 	pcall(function() self._model.PrimaryPart:SetNetworkOwner(nil) end)
 
 	local initialPosition = self._model.PrimaryPart.Position
