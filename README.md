@@ -26,11 +26,11 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 
 |*`Model`* SimplePath.GetNearestCharacter(*`BasePart part`*)|
 |:-|
-|● *Returns closest character model to `part`*|
+|● *Returns closest character model to `part`* <br> ● *Returns nil if no character is found*|
 
 |*`Vector3`* SimplePath.GetNearestCharacterPosition(*`BasePart part`*)|
 |:-|
-|● *Returns closest character position to `part`*|
+|● *Returns closest character position to `part`* <br> ● *Returns nil if no character is found*|
 |Note: same as *`SimplePath.GetNearestCharacter(part).PrimaryPart.Position`*.|
 
 <br>
