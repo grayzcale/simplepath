@@ -64,7 +64,7 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 
 |*`void`* Path:Stop(*`String status`*)|
 |:-|
-|● *Stops moving the model (only for humanoids)* <br> ● *Triggers the [`Stopped`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event with the given `status`* <br> ● *Executing on non-humanoids will only fire the .Stopped event.* <br>|
+|● *Stops moving the model (only for humanoids)* <br> ● *Triggers the [`Stopped`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event with the given `status`* <br> ● *Executing on non-humanoids will only fire the [`Stopped`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event.* <br>|
 
 |*`void`* Path:Destroy()|
 |:-|
