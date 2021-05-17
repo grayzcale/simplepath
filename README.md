@@ -67,6 +67,10 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 |:-|
 |● *Stops moving the model (only for humanoids)* <br> ● *Triggers the [`Stopped`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event with the given `status`* <br> ● *Executing on non-humanoids will only fire the [`Stopped`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event.* <br>|
 
+|*`void`* Path:SetHipHeight(*`Number hipHeight`*)|
+|:-|
+|● *Manually set HipHeight (only for humanoids)* <br> ● *Manual setting of the HipHeight is required if the humanoid's HipHeight is 0*|
+
 |*`void`* Path:Destroy()|
 |:-|
 
