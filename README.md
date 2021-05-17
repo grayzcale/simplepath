@@ -35,7 +35,8 @@ The SimplePath module gives you the ability to create a pathfinding script quick
 
 <br>
 
-|Status Types|Description|
+#### Status Types:
+|Status|Description|
 |-|-|
 |SimplePath.Status.PathCompleted|The goal is reached and pathfinding has ended.|
 |SimplePath.Status.PathNotFound|Pathfinding is not possible.|
