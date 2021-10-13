@@ -1,6 +1,6 @@
 ![Version: 2](https://img.shields.io/badge/Version-2-orange?style=for-the-badge)
 
-![](https://gcdn.pbrd.co/images/x9aWsppc1Fjk.png?o=1)
+![](https://doy2mn9upadnk.cloudfront.net/uploads/default/optimized/4X/6/2/4/6243eab4f176605daa050656d55d47c6d1429e4b_2_690x153.png)
 
 <hr>
 
