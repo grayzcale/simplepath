@@ -13,6 +13,6 @@ To get started with using SimplePath visit: https://00xima16.gitbook.io/simplepa
 <br>
 
 **Useful Links:**
-- Website: https://00xima16.gitbook.io/simplepath-module/
+- API Documentation/Examples: https://00xima16.gitbook.io/simplepath-module/
 - DevForum: https://devforum.roblox.com/t/simplepath-v102-pathfinding-module/1196762
 - ModuleScript: https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module
