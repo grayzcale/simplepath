@@ -10,6 +10,8 @@ This module works by using a "repetitive" approach to pathfinding. The pathfindi
 
 To get started with using SimplePath visit: https://00xima16.gitbook.io/simplepath-module/guides/getting-started.
 
+<br>
+
 **Useful Links:**
 - Website: https://00xima16.gitbook.io/simplepath-module/
 - DevForum: https://devforum.roblox.com/t/simplepath-v102-pathfinding-module/1196762
