@@ -1,99 +1,16 @@
-![Version: 1.02](https://img.shields.io/badge/Version-1.02-blue?style=for-the-badge)
+![Version: 2](https://img.shields.io/badge/Version-2-orange?style=for-the-badge)
 
 # SimplePath - Pathfinding Module
 
-The SimplePath module gives you the ability to create a pathfinding script quickly with just a few lines of code; pathfinding is done using the methods from  [PathfindingService](https://developer.roblox.com/en-us/api-reference/class/PathfindingService).
-<br>
+SimplePath is an open-source pathfinding module that gives you the ability to quickly create a pathfinding script for humanoids and non-humanoids with just a few lines of code. Pathfinding is done using [Roblox's PathfindingService](https://developer.roblox.com/en-us/api-reference/class/PathfindingService).
 
-- Get the SimplePath module from [Roblox library](https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module).
-- See some [examples](https://github.com/00xima/SimplePath/blob/main/EXAMPLES.md).
+This module works by using a "repetitive" approach to pathfinding. The pathfinding agent moves a more efficient path when computed repetitively instead of just once. Part of the reason why is because computing the path once doesn't guarantee that the agent reaches the goal as expected. Taking the repetitive approach accounts for any obstructions or obstacles blocking the path at the current time. This guarantees that the agent will reach its goal no matter what as long as it's traversable within the scope of PathfindingService. Although you can still use SimplePath normally, it is strongly suggested that you take a repetitive approach to pathfinding as this was the primary concept kept in mind during the development of this module. However, in some scenarios, it might be better to compute the path just once. For example, if the agent does not interact with moving objects, you should consider changing the structure of your pathfinding code by reducing the number of repetitions between path computations to improve performance.
 
-<br>
-
-## API
-
-#### Constructor:
-|*`Path`* SimplePath.new(*`Model model`*, *`[Optional] Dictionary agentParamters`*)|
-|:-|
-|● *Creates a new Path Object* <br> ● *`model` must by a Model Instance with a PrimaryPart* <br> ● *Click [here][agentParametersLink] to find out more about `agentParameters` (may be required for custom humanoids)*|
+To get started with using SimplePath visit: https://00xima16.gitbook.io/simplepath-module/guides/getting-started.
 
 <br>
 
-#### Static Methods:
-|*`Vector3`* SimplePath.GetRandomPosition(*`BasePart part`*)|
-|:-|
-|● *Returns random position on the provided part for pathfinding*|
-
-|*`Model`* SimplePath.GetNearestCharacter(*`BasePart part`*)|
-|:-|
-|● *Returns closest character model to `part`* <br> ● *Returns nil if no character is found*|
-
-|*`Vector3`* SimplePath.GetNearestCharacterPosition(*`BasePart part`*)|
-|:-|
-|● *Returns closest character position to `part`* <br> ● *Returns nil if no character is found*|
-|Note: same as *`SimplePath.GetNearestCharacter(part).PrimaryPart.Position`*.|
-
-<br>
-
-#### Status Types:
-|Status|Description|
-|-|-|
-|SimplePath.Status.PathCompleted|The goal is reached and pathfinding has ended.|
-|SimplePath.Status.PathNotFound|Pathfinding is not possible.|
-|SimplePath.Status.PathBlocked|There is an obstruction.|
-
-<br>
-
-### Path Object:
-
-#### Properties:
-|*`boolean`* Path.Visualize `Default: false`|
-|:-|
-|● *Set to true to visualize waypoints*|
-
-|*`boolean`* Path.IgnoreObstacles `Default: true`|
-|:-|
-|● *Set to true to automatically recalculate path when the path is blocked*|
-
-<br>
-
-#### Methods:
-|*`boolean`* Path:Run(*`BasePart/Vector3 goal`*)|
-|:-|
-|● ***Returns false if pathfinding is not possible, make sure to handle it*** <br> ● *`goal` must by a BasePart or a Vector3 position*|
-|Note: for non-humanoid models, after using `Path:Run(goal)` once, execute `Path:Run()` inside of the [`WaypointReached`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event to let the Path know that the model has completed movement for the current waypoint. See [examples](https://github.com/00xima/SimplePath/blob/main/EXAMPLES.md#non-humanoid-example) for more details.|
-
-|*`void`* Path:Stop(*`String status`*)|
-|:-|
-|● *Stops moving the model (only for humanoids)* <br> ● *Triggers the [`Stopped`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event with the given `status`* <br> ● *Executing on non-humanoids will only fire the [`Stopped`](https://github.com/00xima/SimplePath/blob/main/README.md#events) event.* <br>|
-
-|*`void`* Path:SetHipHeight(*`Number hipHeight`*)|
-|:-|
-|● *Manually set HipHeight (only for humanoids)* <br> ● *Manual setting of the HipHeight is required if the humanoid's HipHeight is 0*|
-
-|*`void`* Path:Destroy()|
-|:-|
-
-<br>
-
-#### Events:
-|*`RBXScriptSignal`* Path.Reached(*`Model model`*)|
-|:-|
-|● *Fires when pathfinding is complete*|
-
-|*`RBXScriptSignal`* Path.Blocked(*`Model model`*)|
-|:-|
-|● *Fires when there is an obstruction*|
-|Note: does not exist for non-humanoid models.|
-
-|*`RBXScriptSignal`* Path.Stopped(*`Model model`*, *`String status`*)|
-|:-|
-|● *Fires if pathfinding stopped for any reason represented by `status`*|
-|Note: does not exist for non-humanoid models|
-
-|*`RBXScriptSignal`* Path.WaypointReached(*`Model model`*, *`Vector3 previousPosition`*, *`Vector3 nextPosition`*)|
-|:-|
-|● *Fires when the `model` reaches the next waypoint*|
-|Note: if using non-humanoid models, move the model using this event, wait any amount to prevent exhaustion, and then run [`Path:Run()`](https://github.com/00xima/SimplePath/blob/main/README.md#methods) to notify the end of movement. See [examples](https://github.com/00xima/SimplePath/blob/main/EXAMPLES.md#non-humanoid-example) for more details.|
-
-[agentParametersLink]:https://developer.roblox.com/en-us/api-reference/function/PathfindingService/CreatePath
+**Useful Links:**
+- Website: https://00xima16.gitbook.io/simplepath-module/
+- DevForum: https://devforum.roblox.com/t/simplepath-v102-pathfinding-module/1196762
+- ModuleScript: https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module
