@@ -13,7 +13,6 @@ local Settings = {
 local PathfindingService = game:GetService("PathfindingService")
 local Players = game:GetService("Players")
 local function output(func, msg) func(((func == error and "SimplePath Error: ") or "SimplePath: ")..msg) end
-
 local Path = {
 	StatusType = {
 		Idle = "Idle";
@@ -232,6 +231,7 @@ function Path:Stop()
 		output(error, "Attempt to call Path:Stop() on a non-humanoid.")
 		return
 	end
+	if self._status == Path.StatusType.Idle then output(function(m) warn(debug.traceback(m)) end, "Attempt to run Path:Stop() in idle state") return end
 	disconnectMoveConnection(self)
 	self._status = Path.StatusType.Idle
 	self._visualWaypoints = destroyVisualWaypoints(self._visualWaypoints)
