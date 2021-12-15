@@ -163,10 +163,10 @@ end
 
 --[[ STATIC METHODS ]]--
 function Path.GetNearestCharacter(fromPosition)
-	local character, magnitude = nil, -1
+	local character, dist = nil, math.huge
 	for _, player in ipairs(Players:GetPlayers()) do
-		if player.Character and (player.Character.PrimaryPart.Position - fromPosition).Magnitude > magnitude then
-			character, magnitude = player.Character, (player.Character.PrimaryPart.Position - fromPosition).Magnitude
+		if player.Character and (player.Character.PrimaryPart.Position - fromPosition).Magnitude < dist then
+			character, dist = player.Character, (player.Character.PrimaryPart.Position - fromPosition).Magnitude
 		end
 	end
 	return character
