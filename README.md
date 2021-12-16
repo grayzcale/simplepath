@@ -1,9 +1,9 @@
 ![](https://doy2mn9upadnk.cloudfront.net/uploads/default/optimized/4X/6/2/4/6243eab4f176605daa050656d55d47c6d1429e4b_2_690x153.png)
 
-<hr>
-
 ![version: v2.1](https://img.shields.io/badge/version-v2.1-brightgreen)
 ![license: MIT](https://img.shields.io/badge/license-MIT-blue)
+
+<hr>
 
 SimplePath is an open-source pathfinding module that gives you the ability to quickly create a pathfinding script for humanoids and non-humanoids with just a few lines of code. Pathfinding is done using [Roblox's PathfindingService](https://developer.roblox.com/en-us/api-reference/class/PathfindingService).
 
