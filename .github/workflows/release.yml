@@ -15,18 +15,25 @@ jobs:
       - name: Build project
         run: |
           zip --junk-paths simplepath src/SimplePath.lua
+
       - name: Create Release
-        id: create_release
         uses: lsegal/github-release-from-changelog-action@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get release
+        id: get_release
+        uses: bruceadams/get-release@v1.2.3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
       - name: Upload Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.release_url }}
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
           asset_path: ./simplepath.zip
           asset_name: SimplePath.zip
           asset_content_type: application/zip
