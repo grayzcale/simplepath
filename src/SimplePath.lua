@@ -1,7 +1,7 @@
 --[[
 ---------------------------------------------------------------------
 Created by: @V3N0M_Z
-Website: https://00xima16.gitbook.io/simplepath-module/
+Website: https://00xima.github.io/RBLX-SimplePath/
 ---------------------------------------------------------------------
 ]]
 
