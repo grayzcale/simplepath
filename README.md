@@ -1,7 +1,7 @@
 ![](https://doy2mn9upadnk.cloudfront.net/uploads/default/original/4X/0/7/9/079f2967c6063a0052eb4809633b1d1e498a345a.png)
 
 [![Docs](https://github.com/00xima/RBLX-SimplePath/actions/workflows/docs.yml/badge.svg)](https://github.com/00xima/RBLX-SimplePath/actions/workflows/docs.yml)
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/00xima/RBLX-SimplePath?sort=semver)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/00xima/RBLX-SimplePath?color=orange&sort=semver)
 ![license: MIT](https://img.shields.io/badge/license-MIT-blue)
 
 <hr>
