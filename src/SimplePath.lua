@@ -12,7 +12,9 @@ local Settings = {
 
 local PathfindingService = game:GetService("PathfindingService")
 local Players = game:GetService("Players")
-local function output(func, msg) func(((func == error and "SimplePath Error: ") or "SimplePath: ")..msg) end
+local function output(func, msg)
+	func(((func == error and "SimplePath Error: ") or "SimplePath: ")..msg)
+end
 local Path = {
 	StatusType = {
 		Idle = "Idle";
@@ -234,7 +236,12 @@ function Path:Stop()
 		output(error, "Attempt to call Path:Stop() on a non-humanoid.")
 		return
 	end
-	if self._status == Path.StatusType.Idle then output(function(m) warn(debug.traceback(m)) end, "Attempt to run Path:Stop() in idle state") return end
+	if self._status == Path.StatusType.Idle then
+		output(function(m)
+			warn(debug.traceback(m))
+		end, "Attempt to run Path:Stop() in idle state")
+		return
+	end
 	disconnectMoveConnection(self)
 	self._status = Path.StatusType.Idle
 	self._visualWaypoints = destroyVisualWaypoints(self._visualWaypoints)
@@ -264,7 +271,7 @@ function Path:Run(target)
 	end
 
 	--Compute path
-	local pathComputed, msg = pcall(function()
+	local pathComputed, _ = pcall(function()
 		self._path:ComputeAsync(self._agent.PrimaryPart.Position, (typeof(target) == "Vector3" and target) or target.Position)
 	end)
 
@@ -284,21 +291,27 @@ function Path:Run(target)
 	self._target = target
 
 	--Set network owner to server to prevent "hops"
-	pcall(function() self._agent.PrimaryPart:SetNetworkOwner(nil) end)
+	pcall(function()
+		self._agent.PrimaryPart:SetNetworkOwner(nil)
+	end)
 
 	--Initialize waypoints
 	self._waypoints = self._path:GetWaypoints()
 	self._currentWaypoint = 2
 
 	--Refer to Settings.COMPARISON_CHECKS
-	if self._humanoid then comparePosition(self) end
+	if self._humanoid then
+		comparePosition(self)
+	end
 
 	--Visualize waypoints
 	destroyVisualWaypoints(self._visualWaypoints)
 	self._visualWaypoints = (self.Visualize and createVisualWaypoints(self._waypoints))
 
 	--Create a new move connection if it doesn't exist already
-	self._moveConnection = self._humanoid and (self._moveConnection or self._humanoid.MoveToFinished:Connect(function(...) moveToFinished(self, ...) end))
+	self._moveConnection = self._humanoid and (self._moveConnection or self._humanoid.MoveToFinished:Connect(function(...)
+		moveToFinished(self, ...)
+	end))
 
 	--Begin pathfinding
 	if self._humanoid then
