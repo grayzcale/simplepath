@@ -2,9 +2,6 @@ name: Docs
 
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - "*"
 
 jobs:
   build:
