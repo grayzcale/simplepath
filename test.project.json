@@ -1,0 +1,40 @@
+{
+	"name": "SimplePath Tests",
+	"tree": {
+		"$className": "DataModel",
+
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+			"$path": "src"
+		},
+
+		"Workspace": {
+			"$className": "Workspace",
+			"$properties": {
+				"FilteringEnabled": true
+			},
+			"Baseplate": {
+				"$className": "Part",
+				"$properties": {
+					"Anchored": true,
+					"Color": [0.388235, 0.372549, 0.384314],
+					"Locked": true,
+					"Position": [0, -10, 0],
+					"Size": [512, 20, 512]
+				}
+			},
+			"Goal": {
+				"$className": "Part",
+				"$properties": {
+					"Size": [1, 1, 1],
+					"Position": [0, 1, -30],
+					"CanCollide": false,
+					"Anchored": true
+				}
+			},
+			"Dummy": {
+				"$path": "tests/bin/Dummy.rbxm"
+			}
+		}
+	}
+}
