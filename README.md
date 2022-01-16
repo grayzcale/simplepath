@@ -14,7 +14,7 @@ To get started with using SimplePath visit [Getting Started](https://00xima.gith
 
 <br>
 
-**Useful Links:**
+**Links:**
 
 - <a href=https://github.com/00xima/SimplePath target=_blank>GitHub</a>
 - <a href=https://devforum.roblox.com/t/1196762 target=_blank>DevForum</a>
