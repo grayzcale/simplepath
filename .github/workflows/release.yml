@@ -25,6 +25,9 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
+      - name: Print
+        run: |
+          echo 
       - name: Upload Release Asset
         id: upload-release-asset 
         uses: Fhwang0926/upload-release-asset@v1.1.8
@@ -32,5 +35,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_name: src/SimplePath.lua
+          asset_name: ./src/SimplePath.lua
 #           asset_label: latest
