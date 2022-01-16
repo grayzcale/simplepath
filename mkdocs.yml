@@ -1,0 +1,40 @@
+site_name: "SimplePath"
+site_url: https://00xima.github.io/RBLX-SimplePath/
+repo_url: https://github.com/00xima/RBLX-SimplePath/
+repo_name: 00xima/RBLX-SimplePath
+site_description: SimplePath is an open-source pathfinding module that gives you the ability to quickly create a pathfinding script for humanoids and non-humanoids with just a few lines of code.
+site_author: "@V3N0M_Z"
+
+# Local
+# site_url:
+# use_directory_urls: false
+
+theme:
+  name: material
+  favicon: assets/logo.png
+  logo: assets/logo.png
+  features:
+    - content.code.annotate
+  palette:
+    - scheme: slate
+      accent: deep orange
+
+extra_css:
+  - stylesheets/extra.css
+  
+nav:
+  - Home: index.md
+  - API Reference: api-reference.md
+  - Guides:
+      - Getting Started: guides/getting-started.md
+  - Examples:
+      - Humanoid: examples/humanoid.md
+      - Non-Humanoid: examples/non-humanoid.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - tables
+  - admonition
+  - pymdownx.inlinehilite
