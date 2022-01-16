@@ -1,2 +1,3 @@
 [tools]
-selene = { github = "Kampfkarren/selene", version = "*" }
+selene = { source = "Kampfkarren/selene", version = "*" }
+rojo = { source = "rojo-rbx/rojo", version = "7" }
