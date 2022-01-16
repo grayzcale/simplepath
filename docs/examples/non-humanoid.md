@@ -5,7 +5,7 @@ Handling pathfinding for non-humanoid models can get tricky to handle. Consider 
 ## Example 1
 
 <video width=100% height=100% controls>
-    <source style="object-fit: cover;" src="/assets/non-humanoid_example_1.mp4" types="video/mp4">
+    <source style="object-fit: cover;" src="https://00xima.github.io/RBLX-SimplePath/assets/non_humanoid_example_1.mp4" types="video/mp4">
 </video>
 
 ```lua linenums="1"
@@ -42,7 +42,7 @@ Path:Run(Goal)
 ## Example 2
 
 <video width=100% height=100% controls>
-    <source style="object-fit: cover;" src="/assets/non-humanoid_example_2.mp4" types="video/mp4">
+    <source style="object-fit: cover;" src="https://00xima.github.io/RBLX-SimplePath/assets/non_humanoid_example_2.mp4" types="video/mp4">
 </video>
 
 ```lua linenums="1"
@@ -88,7 +88,7 @@ Path:Run(Goal)
 ## Example 3
 
 <video width=100% height=100% controls>
-    <source style="object-fit: cover;" src="/assets/non-humanoid_example_3.mp4" types="video/mp4">
+    <source style="object-fit: cover;" src="https://00xima.github.io/RBLX-SimplePath/assets/non_humanoid_example_3.mp4" types="video/mp4">
 </video>
 
 
