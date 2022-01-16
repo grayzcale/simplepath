@@ -10,9 +10,11 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build project
+
+      - name: Build
         run: |
           zip --junk-paths simplepath src/SimplePath.lua
 
