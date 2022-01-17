@@ -10,8 +10,8 @@ on:
 
 jobs:
 
-  testing:
-    name: Test
+  tests:
+    name: Perform tests
     runs-on: windows-latest
     steps:
 
@@ -39,7 +39,7 @@ jobs:
 
 
   linting:
-    name: CI
+    name: Lint check
     runs-on: ubuntu-latest
     steps:
 

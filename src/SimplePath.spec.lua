@@ -57,11 +57,12 @@ return function()
 		end)
 		
 		it("should fire Path.Reached after reaching goal", function()
-			repeat task.wait() until reached or os.time() - t > 4
+			repeat task.wait() until reached or os.time() - t > 10
 			expect(reached).to.be.ok()
 		end)
 		
 		it("should reach all the waypoints to goal", function()
+			print("Total Waypoints: ", waypointsReached)
 			expect(waypointsReached).to.equal(7)
 		end)
 		
