@@ -1,4 +1,4 @@
-## v2.1.2 (2022-01-16)
+## v2.1.2 (pre-release)
 * `Path:Destroy()` now makes the object completely empty
 * Fixed some linting errors
 
