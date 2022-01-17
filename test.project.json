@@ -11,6 +11,13 @@
 			}
 		},
 
+		"HttpService": {
+			"$className": "HttpService",
+			"$properties": {
+				"HttpEnabled": true
+			}
+		},
+
 		"ServerScriptService": {
 			"$className": "ServerScriptService",
 			"server": {
