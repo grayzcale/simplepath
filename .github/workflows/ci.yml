@@ -16,12 +16,25 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: true
 
-      - name: Tools
+      - name: Install Tools
         uses: Roblox/setup-foreman@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Selene
-        run: |
-          selene src/*.lua
+      - name: Install Roblox Studio
+        uses: OrbitalOwen/roblox-win-installer-action@1.1
+        with:
+          cookie: ${{ secrets.ROBLOSECURITY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Test
+        run: rojo build test.project.json -o test.rbxlx
+
+      - name: Run Test
+        run: run-in-roblox --place test.rbxlx --script tests/.server.lua
+
+      - name: Lint Check
+        run: selene src/*.lua
