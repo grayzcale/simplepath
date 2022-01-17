@@ -13,8 +13,8 @@
 
 		"ServerScriptService": {
 			"$className": "ServerScriptService",
-			"script": {
-				"$path": "tests/runner.server.lua"
+			"server": {
+				"$path": "tests/.server.lua"
 			}
 		},
 

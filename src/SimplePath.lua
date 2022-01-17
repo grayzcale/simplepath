@@ -228,6 +228,8 @@ function Path:Destroy()
 	self._t = nil
 	self._position = nil
 	self._target = nil
+	self._waypoints = nil
+	self._currentWaypoint = nil
 	setmetatable(self, nil)
 end
 
