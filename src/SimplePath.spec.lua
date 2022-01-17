@@ -5,6 +5,7 @@ return function()
 	local Goal = workspace.Goal
 	local Path = SimplePath.new(Dummy)
 	
+	-- selene: allow(unused_variable)
 	local reached, errored, stopped
 	local waypointsReached = 0
 	
@@ -12,7 +13,7 @@ return function()
 		reached = true
 	end)
 	
-	Path.Error:Connect(function(err)
+	Path.Error:Connect(function()
 		errored = true
 	end)
 	
@@ -56,15 +57,15 @@ return function()
 			expect(Path.Status).to.equal(SimplePath.StatusType.Active)
 		end)
 		
-		it("should fire Path.Reached after reaching goal", function()
-			repeat task.wait() until reached or os.time() - t > 10
-			expect(reached).to.be.ok()
-		end)
+		-- it("should fire Path.Reached after reaching goal", function()
+		-- 	repeat task.wait() until reached or os.time() - t > 4
+		-- 	expect(reached).to.be.ok()
+		-- end)
 		
-		it("should reach all the waypoints to goal", function()
-			print("Total Waypoints: ", waypointsReached)
-			expect(waypointsReached).to.equal(7)
-		end)
+		-- it("should reach all the waypoints to goal", function()
+		-- 	print("Total Waypoints: ", waypointsReached)
+		-- 	expect(waypointsReached).to.equal(7)
+		-- end)
 		
 	end)
 	
