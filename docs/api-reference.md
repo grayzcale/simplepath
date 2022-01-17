@@ -2,25 +2,23 @@
 
 The settings below can be accessed directly from the SimplePath modulescript.
 
+<br>
+
 ### TIME_VARIANCE
->`<number>` Settings.TIME_VARIANCE *`[default: 0.07]`*
+> `Settings.TIME_VARIANCE: number` [default: 0.07]
 
 Represents the minimum time in seconds elapsed between Path.Run calls. The default setting is roughly 14 computations per second. This is necessary to allow the agent the freedom for movement (give the agent some time to reach the next waypoint before computing a new path).
 
+<br>
+
 ### COMPARISON_CHECKS
->`<number>` Settings.COMPARISON_CHECKS *`[default: 1]`*
+> `Settings.COMPARISON_CHECKS: number` [default: 1]
 
 During pathfinding, in the case where the agent is stationary at the same position for 1 + COMPARISON_CHECKS consecutive Path.Run calls, the agent attempts to avoid the obstruction by jumping. This is necessary in order to prevent the agent from being at rest for infinity (unless otherwise moved by an external object).
 
 <hr>
 
 ## ErrorTypes
-
-|Types| |
-|-|-|
-|SimplePath.ErrorType.LimitReached|The elapsed time between Path.Run calls is less than Settings.TIME_VARIANCE. For stability purposes, this error is invoked after `Path:Run()` yields for Settings.TIME_VARIANCE and this ErrorType should not be relied upon.|
-|SimplePath.ErrorType.TargetUnreachable|Target is unreachable.|
-|SimplePath.ErrorType.ComputeError|Path computation failed.|
 
 ```lua linenums="1" title="Example"
 
@@ -36,24 +34,58 @@ end)
 !!! Info
 	Use ErrorTypes to determine the type of error received from the Path.Error event. For additional debug options, see [Path.LastError](#lasterror).
 
+<br>
+
+### LimitReached
+> `ErrorType.LimitReached: ErrorType and string`
+
+The elapsed time between Path.Run calls is less than Settings.TIME_VARIANCE. For stability purposes, this error is invoked after `Path:Run()` yields for Settings.TIME_VARIANCE.
+
+It is recommended to avoid depending on this ErrorType.
+
+<br>
+
+### TargetUnreachable
+> `ErrorType.TargetUnreachable: ErrorType and string`
+
+Target is unreachable.
+
+<br>
+
+### ComputeError
+> `ErrorType.ComputeError: ErrorType and string`
+
+Path computation failed.
+
 <hr>
 
 ## StatusTypes
 
-|Types| |
-|-|-|
-|SimplePath.StatusType.Idle|Path is in idle state.|
-|SimplePath.StatusType.Active|Path is in active state.|
-
 Read the [Path.Status](#status) property to get the current Path status.
+
+<br>
+
+### Idle
+> `StatusType.Idle: StatusType and string`
+
+Path is in idle state.
+
+<br>
+
+### Active
+> `StatusType.Active: StatusType and string`
+
+Path is in active state.
 
 <hr>
 
 ## Static Methods
 
+<br>
+
 ### GetNearestCharacter
 
->`<model | nil>` SimplePath.GetNearestCharacter(*`[Vector3]`*`fromPosition`)
+> `<model or nil> SimplePath.GetNearestCharacter(fromPosition: Vector3)` 
 
 Returns a `model` of the nearest character from the provided `Vector3` position or `nil` if no character is found.
 
@@ -61,9 +93,9 @@ Returns a `model` of the nearest character from the provided `Vector3` position 
 
 # Path
 
-## Constructor
+### Constructor
 
->`<Path>` SimplePath.new(*`[model]`*`agent`, *`[Dictionary | nil]`*`agentParameters`)
+> `<Path> SimplePath.new(agent: model, agentParameters: Dictionary or nil)`
 
 Creates a new Path object using the `agent` and optional `agentParameters`.
 	
@@ -77,15 +109,17 @@ Creates a new Path object using the `agent` and optional `agentParameters`.
 
 ## Properties
 
+<br>
+
 ### Visualize
->`<boolean>` Path.Visualize *`[default: false]`*
+>`Path.Visualize: boolean` [default: false]
 
 Set this property to `true` before the first `Path:Run()` to visualize waypoints.
 
 <br>
 
 ### Status
->`<StatusType>` Path.Status *`[readonly]`*
+>`Path.Status: SimplePath.StatusType` [readonly]
 
 Returns the current [StatusType](#statustypes) of Path.
 
@@ -95,7 +129,7 @@ Returns the current [StatusType](#statustypes) of Path.
 <br>
 
 ### LastError
->`<ErrorType>` Path.LastError: *`[readonly]`*
+>`Path.LastError: SimplePath.ErrorType` [readonly]
 
 Returns the last [ErrorType](#errortypes).
 
@@ -103,15 +137,17 @@ Returns the last [ErrorType](#errortypes).
 
 ## Methods
 
+<br>
+
 ### Run
->`<boolean>` Path:Run(*`[Vector3 | BasePart]`*`target`)
+>`<boolean> Path:Run(target: Vector3 or BasePart)`
 
 This method returns `true` if the computation was successful. If it returns `false`, the [Path.Error](#error) event is fired with a ComputeError. This method automatically yields if the elapsed time between consecutive calls is less than Settings.TIME_VARIANCE.
 
 <br>
 
 ### Stop
->`<void>` Path:Stop()
+>`<void> Path:Stop()`
 
 Stops the navigation of the current Path if Path.Status is in an active state and fires the [Path.Stopped](#stopped) event.
 
@@ -121,14 +157,17 @@ Stops the navigation of the current Path if Path.Status is in an active state an
 <br>
 
 ### Destroy
->`<void>` Path:Destroy()
+>`<void> Path:Destroy()`
 
+Destroy Path.
 <hr>
 
 ## Events
 
+<br>
+
 ### Reached
->`<RBXScriptSignal>` Path.Reached(*`[model]`*`agent`, *`[PathWaypoint]`*`finalWaypoint`)
+>`<RBXScriptSignal> Path.Reached(agent: model, finalWaypoint: PathWaypoint)`
 
 This event is fired after the `agent` reaches its target and returns the final `PathWaypoint`.
 
@@ -138,31 +177,31 @@ This event is fired after the `agent` reaches its target and returns the final `
 <br>
 
 ### WaypointReached
->`<RBXScriptSignal>` Path.WaypointReached(*`[model]`*`agent`, *`[PathWaypoint]`*`next`)
+>`<RBXScriptSignal> Path.WaypointReached(agent: model, next: PathWaypoint)`
 
 This event is fired every time the next `PathWaypoint` is reached.
 
-!!! Info
+!!! Note
 	Make use of this event when pathfinding for non-humanoids.
 
 <br>
 
 ### Blocked
->`<RBXScriptSignal>` Path.Blocked(*`[model]`*`agent`, *`[PathWaypoint]`*`blocked`)
+>`<RBXScriptSignal> Path.Blocked(agent: model, blocked: PathWaypoint)`
 
-`blocked` is a `PathWaypoint` such that: current waypoint <= `blocked` <= current waypoint + 1
+`blocked` is a `PathWaypoint` such that: `$currentWaypoint.Index <= blocked.Index <= currentWaypoint.Index + 1$`.
 
 <br>
 
 ### Error
->`<RBXScriptSignal>` Path.Error(*`[ErrorType]`*`error`)
+>`<RBXScriptSignal> Path.Error(error: ErrorType)`
 
 Fires when an error from any of the [ErrorTypes](#errortypes) occurs.
 
 <br>
 
 ### Stopped
->`<RBXScriptSignal>` Path.Stopped(*`[model]`*`agent`)
+>`<RBXScriptSignal> Path.Stopped(agent: model)`
 
 Fires after `Path:Stop()` is called.
 

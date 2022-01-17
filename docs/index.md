@@ -4,7 +4,15 @@ This module works by using a "repetitive" approach to pathfinding. The pathfindi
 
 To get started with using SimplePath visit [Getting Started](guides/getting-started.md).
 
-**Useful Links:**
+<br>
+
+**Installation:**
+
+Get the SimplePath modulescript from [Roblox](https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module) or get the [latest release](https://github.com/00xima/RBLX-SimplePath/releases) from GitHub.
+
+<br>
+
+**Links:**
 
 - <a href=https://github.com/00xima/SimplePath target=_blank>GitHub</a>
 - <a href=https://devforum.roblox.com/t/1196762 target=_blank>DevForum</a>

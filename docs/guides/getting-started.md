@@ -2,10 +2,10 @@ This tutorial shows you how you can set up SimplePath and teaches you a basic im
 
 ## Installation
 
-Get the module from the [Roblox library](https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module).
+Get the module from the [Roblox library](https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module) or get the [latest release](https://github.com/00xima/RBLX-SimplePath/releases) from GitHub.
 
 !!! Note
-	For the purposes of the tutorial, the script assumes the module is in `game.ServerStorage`.
+	For the purposes of the tutorial, the script assumes the modulescript is in `game.ServerStorage`.
 
 After you insert the module to your place, add a new script to `game.ServerScriptService` and paste the folowing code to start using the module:
 
@@ -132,8 +132,9 @@ end)
 
 ## Method 2: Using Loops
 
-In the following tutorial, you will learn how to use SimplePath using loops instead of events. Using SimplePath in a loop is way simpler than using events. You only need 3 lines of code:
+In the following tutorial, you will learn how to use SimplePath using loops instead of events.
 
+Using SimplePath in a loop is way simpler than using events. You only need 3 lines of code:
 ```lua
 while true do
     Path:Run(Goal)
@@ -169,6 +170,6 @@ end
 
 <hr>
 
-## Choosing a method
+## Choosing the right method
 
 SimplePath gives you the freedom to code in any method you prefer. You are not limited to the two methods mentioned in this tutorial as they are simply meant to be examples. You can even combine both methods and implement them together at once. It all depends on how you decide to structure your code based on the performance, compatibility, etc. and personal preference.

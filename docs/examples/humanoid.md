@@ -1,12 +1,14 @@
 # Humanoid Examples
 
-The following example is explained in detail [here](examples/humanoid.md).
+The following examples is explained in detail [here](../guides/getting-started.md).
+
+<br>
+
+## Using Events
 
 <video width=100% height=100% controls>
     <source style="object-fit: cover;" src="https://00xima.github.io/RBLX-SimplePath/assets/humanoid_example_1.mp4" types="video/mp4">
 </video>
-
-## Using Events
 
 ```lua linenums="1"
 --Import the module so you can start using it
@@ -47,6 +49,8 @@ end)
 
 Path:Run(Goal)
 ```
+
+<hr>
 
 ## Using Loops
 

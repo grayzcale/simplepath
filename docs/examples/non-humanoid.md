@@ -1,6 +1,8 @@
 # Non-Humanoid Examples
 
-Handling pathfinding for non-humanoid models can get tricky to handle. Consider converting your non-humanoid model to a humanoid if possible.
+Pathfinding for non-humanoid models can get a little complicated. Consider converting your non-humanoid model to a humanoid if possible.
+
+<br>
 
 ## Example 1
 
@@ -38,6 +40,8 @@ end)
 
 Path:Run(Goal)
 ```
+
+<hr>
 
 ## Example 2
 
@@ -84,6 +88,8 @@ end)
 
 Path:Run(Goal)
 ```
+
+<hr>
 
 ## Example 3
 
