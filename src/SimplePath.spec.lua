@@ -33,18 +33,17 @@ return function()
 		local c = 0
 		for i, v in pairs(t) do
 			c += 1
-			print("Content: ", i, v)
 		end
 		return c
 	end
 	
 	describe("Path:Run()", function()
 
-		-- local t
+		local t
 		
-		-- beforeAll(function()
-		-- 	t = os.time()
-		-- end)
+		beforeAll(function()
+			t = os.time()
+		end)
 		
 		afterAll(function()
 			reset()
@@ -59,10 +58,11 @@ return function()
 			expect(Path.Status).to.equal(SimplePath.StatusType.Active)
 		end)
 		
-		-- it("should fire Path.Reached after reaching goal", function()
-		-- 	repeat task.wait() until reached or os.time() - t > 4
-		-- 	expect(reached).to.be.ok()
-		-- end)
+		it("should fire Path.Reached after reaching goal", function()
+			repeat task.wait() until reached or os.difftime(os.time(), t) > 4
+			print("Position: ", t, Dummy.Position)
+			expect(reached).to.be.ok()
+		end)
 		
 		-- it("should reach all the waypoints to goal", function()
 		-- 	print("Total Waypoints: ", waypointsReached)
