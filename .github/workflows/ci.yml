@@ -9,9 +9,10 @@ on:
       - "main"
 
 jobs:
-  linter:
-    name: CI
-    runs-on: ubuntu-latest
+
+  testing:
+    name: Test
+    runs-on: windows-latest
     steps:
 
       - name: Checkout
@@ -30,11 +31,22 @@ jobs:
           cookie: ${{ secrets.ROBLOSECURITY }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Test
+      - name: Build
         run: rojo build test.project.json -o test.rbxlx
 
-      - name: Run Test
+      - name: Run
         run: run-in-roblox --place test.rbxlx --script tests/.server.lua
+
+
+  linting:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Install Selene
+        uses: Roblox/setup-foreman@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lint Check
         run: selene src/*.lua
