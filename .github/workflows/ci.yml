@@ -43,6 +43,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Install Selene
         uses: Roblox/setup-foreman@v1
         with:
