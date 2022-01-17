@@ -38,11 +38,12 @@ return function()
 	end
 	
 	describe("Path:Run()", function()
-		local t
 		
-		beforeAll(function()
-			t = os.time()
-		end)
+		-- local t
+		
+		-- beforeAll(function()
+		-- 	t = os.time()
+		-- end)
 		
 		afterAll(function()
 			reset()
