@@ -27,6 +27,9 @@ return function()
 	
 	local function reset()
 		Dummy.PrimaryPart.CFrame = CFrame.new(0, 3, 0)
+		if Path.Status == SimplePath.StatusType.Active then
+			Path:Stop()
+		end
 	end
 	
 	local function getCount(t)
@@ -39,14 +42,15 @@ return function()
 	
 	describe("Path:Run()", function()
 
-		local t
+		-- local t
 		
-		beforeAll(function()
-			t = os.time()
-		end)
+		-- beforeAll(function()
+		-- 	t = os.time()
+		-- end)
 		
 		afterAll(function()
 			reset()
+			task.wait(1)
 		end)
 		
 		it("should start pathfinding without errors", function()
@@ -58,13 +62,13 @@ return function()
 			expect(Path.Status).to.equal(SimplePath.StatusType.Active)
 		end)
 		
-		it("should fire Path.Reached after reaching goal", function()
-			repeat
-				task.wait()
-			until reached or os.difftime(os.time(), t) > 4
-			print("Position: ", os.difftime(os.time(), t), Dummy.PrimaryPart.Position)
-			expect(reached).to.be.ok()
-		end)
+		-- it("should fire Path.Reached after reaching goal", function()
+		-- 	repeat
+		-- 		task.wait()
+		-- 	until reached or os.difftime(os.time(), t) > 4
+		-- 	print("Position: ", os.difftime(os.time(), t), Dummy.PrimaryPart.Position)
+		-- 	expect(reached).to.be.ok()
+		-- end)
 		
 		-- it("should reach all the waypoints to goal", function()
 		-- 	print("Total Waypoints: ", waypointsReached)
