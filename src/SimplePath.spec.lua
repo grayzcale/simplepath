@@ -62,7 +62,7 @@ return function()
 			repeat
 				task.wait()
 			until reached or os.difftime(os.time(), t) > 4
-			print("Position: ", t, Dummy.PrimaryPart.Position)
+			print("Position: ", os.difftime(os.time(), t), Dummy.PrimaryPart.Position)
 			expect(reached).to.be.ok()
 		end)
 		
