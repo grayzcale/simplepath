@@ -31,14 +31,15 @@ return function()
 	
 	local function getCount(t)
 		local c = 0
-		for _, _ in pairs(t) do
+		for i, v in pairs(t) do
 			c += 1
+			print("Content: ", i, v)
 		end
 		return c
 	end
 	
 	describe("Path:Run()", function()
-		
+
 		-- local t
 		
 		-- beforeAll(function()
