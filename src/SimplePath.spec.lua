@@ -31,7 +31,7 @@ return function()
 	
 	local function getCount(t)
 		local c = 0
-		for i, v in pairs(t) do
+		for _, _ in pairs(t) do
 			c += 1
 		end
 		return c
@@ -59,8 +59,10 @@ return function()
 		end)
 		
 		it("should fire Path.Reached after reaching goal", function()
-			repeat task.wait() until reached or os.difftime(os.time(), t) > 4
-			print("Position: ", t, Dummy.Position)
+			repeat
+				task.wait()
+			until reached or os.difftime(os.time(), t) > 4
+			print("Position: ", t, Dummy.PrimaryPart.Position)
 			expect(reached).to.be.ok()
 		end)
 		
