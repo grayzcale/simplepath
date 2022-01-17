@@ -1,5 +1,6 @@
 ![](https://doy2mn9upadnk.cloudfront.net/uploads/default/original/4X/0/7/9/079f2967c6063a0052eb4809633b1d1e498a345a.png)
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/00xima/rblx-simplepath/CI?color=green&label=CI&style=plastic)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/00xima/rblx-simplepath/Docs?color=green&label=docs&style=plastic)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/00xima/rblx-simplepath?color=yellowgreen&sort=semver&style=plastic)
 ![GitHub](https://img.shields.io/github/license/00xima/rblx-simplepath?color=blue&style=plastic)
