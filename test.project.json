@@ -5,7 +5,17 @@
 
 		"ReplicatedStorage": {
 			"$className": "ReplicatedStorage",
-			"$path": "src"
+			"$path": "src",
+			"TestEZ": {
+				"$path": "modules/testez/src"
+			}
+		},
+
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
+			"script": {
+				"$path": "tests/runner.server.lua"
+			}
 		},
 
 		"Workspace": {
