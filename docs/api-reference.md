@@ -91,9 +91,11 @@ Returns a `model` of the nearest character from the provided `Vector3` position 
 
 <hr>
 
-# Path
+## Path
 
-### Constructor
+<br>
+
+#### Constructor
 
 > `<Path> SimplePath.new(agent: model, agentParameters: Dictionary or nil)`
 
@@ -105,20 +107,22 @@ Creates a new Path object using the `agent` and optional `agentParameters`.
 !!! Info
 	Use agent parameters for custom characters to compute the best path. Find out more about agent parameters and how to use them at [Roblox Developer Hub](https://developer.roblox.com/en-us/api-reference/function/PathfindingService/CreatePath).
 
+	Refine the path computation further by using pathfinding modifiers. To use this feature with SimplePath, Simply include modifier data in `agentParameters` normally. Find out more about pathfinding modifiers at [Roblox Developer Hub](https://developer.roblox.com/en-us/api-reference/class/PathfindingService).
+
 <hr>
 
-## Properties
+### Properties
 
 <br>
 
-### Visualize
+#### Visualize
 >`Path.Visualize: boolean` [default: false]
 
 Set this property to `true` before the first `Path:Run()` to visualize waypoints.
 
 <br>
 
-### Status
+#### Status
 >`Path.Status: SimplePath.StatusType` [readonly]
 
 Returns the current [StatusType](#statustypes) of Path.
@@ -128,25 +132,25 @@ Returns the current [StatusType](#statustypes) of Path.
 
 <br>
 
-### LastError
+#### LastError
 >`Path.LastError: SimplePath.ErrorType` [readonly]
 
 Returns the last [ErrorType](#errortypes).
 
 <hr>
 
-## Methods
+### Methods
 
 <br>
 
-### Run
+#### Run
 >`<boolean> Path:Run(target: Vector3 or BasePart)`
 
 This method returns `true` if the computation was successful. If it returns `false`, the [Path.Error](#error) event is fired with a ComputeError. This method automatically yields if the elapsed time between consecutive calls is less than Settings.TIME_VARIANCE.
 
 <br>
 
-### Stop
+#### Stop
 >`<void> Path:Stop()`
 
 Stops the navigation of the current Path if Path.Status is in an active state and fires the [Path.Stopped](#stopped) event.
@@ -156,17 +160,17 @@ Stops the navigation of the current Path if Path.Status is in an active state an
 
 <br>
 
-### Destroy
+#### Destroy
 >`<void> Path:Destroy()`
 
 Destroy Path.
 <hr>
 
-## Events
+### Events
 
 <br>
 
-### Reached
+#### Reached
 >`<RBXScriptSignal> Path.Reached(agent: model, finalWaypoint: PathWaypoint)`
 
 This event is fired after the `agent` reaches its target and returns the final `PathWaypoint`.
@@ -176,7 +180,7 @@ This event is fired after the `agent` reaches its target and returns the final `
 
 <br>
 
-### WaypointReached
+#### WaypointReached
 >`<RBXScriptSignal> Path.WaypointReached(agent: model, next: PathWaypoint)`
 
 This event is fired every time the next `PathWaypoint` is reached.
@@ -186,21 +190,21 @@ This event is fired every time the next `PathWaypoint` is reached.
 
 <br>
 
-### Blocked
+#### Blocked
 >`<RBXScriptSignal> Path.Blocked(agent: model, blocked: PathWaypoint)`
 
-`blocked` is a `PathWaypoint` such that: `$currentWaypoint.Index <= blocked.Index <= currentWaypoint.Index + 1$`.
+`blocked` is a `PathWaypoint` such that: `currentWaypoint.Index <= blocked.Index <= currentWaypoint.Index + 1`.
 
 <br>
 
-### Error
+#### Error
 >`<RBXScriptSignal> Path.Error(error: ErrorType)`
 
 Fires when an error from any of the [ErrorTypes](#errortypes) occurs.
 
 <br>
 
-### Stopped
+#### Stopped
 >`<RBXScriptSignal> Path.Stopped(agent: model)`
 
 Fires after `Path:Stop()` is called.
