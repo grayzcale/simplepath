@@ -1,6 +1,11 @@
 ## Configuration
 
-The settings below can be accessed directly from the SimplePath modulescript.
+The settings below are default values that can be accessed directly from the SimplePath modulescript.
+
+!!! Note
+	*Changing default settings will only affect agents that don't already have overridden settings.*
+
+	To override settings for a single agent, pass in a dictionary (with a setting as the key) to the constructor and include values in the dictionary to override. See [constructor](#constructor) for more info.
 
 <br>
 
@@ -15,6 +20,16 @@ Represents the minimum time in seconds elapsed between Path.Run calls. The defau
 > `Settings.COMPARISON_CHECKS: number` [default: 1]
 
 During pathfinding, in the case where the agent is stationary at the same position for 1 + COMPARISON_CHECKS consecutive Path.Run calls, the agent attempts to avoid the obstruction by jumping. This is necessary in order to prevent the agent from being at rest for infinity (unless otherwise moved by an external object).
+
+<br>
+
+### JUMP_WHEN_STUCK
+> `Settings.JUMP_WHEN_STUCK: boolean` [default: true] [humanoid only]
+
+`Settings.JUMP_WHEN_STUCK` is directly dependant on `Settings.COMPARISON_CHECKS`. If this is false, the agent will not attempt to jump.
+
+!!! Warning
+	Overriding this setting to `false` will prevent the agent from jumping which can cause the agent to remain at rest for infinity. Do not disable this setting without properly handling it using [ErrorType.AgentStuck](#agentstuck).
 
 <hr>
 
@@ -57,6 +72,16 @@ Target is unreachable.
 
 Path computation failed.
 
+<br>
+
+### AgentStuck
+> `ErrorType.AgentStuck: ErrorType and string`
+
+Agent is stuck (possibly due to an obstruction of some kind).
+
+!!! Note
+	This is different from Path.Blocked in the sense that it is detected by SimplePath itself when the agent does not move for [Settings.COMPARISON_CHECKS](#comparison_checks) + 1 consecutive Path.Run calls.
+
 <hr>
 
 ## StatusTypes
@@ -97,9 +122,9 @@ Returns a `model` of the nearest character from the provided `Vector3` position 
 
 #### Constructor
 
-> `<Path> SimplePath.new(agent: model, agentParameters: Dictionary or nil)`
+> `<Path> SimplePath.new(agent: model, agentParameters: Dictionary or nil, override: Dictionary or nil)`
 
-Creates a new Path object using the `agent` and optional `agentParameters`.
+Creates a new Path object using the `agent` with optional `agentParameters`. Pass in `override` as a dictionary that includes a [setting](#configuration) and its overridden value.
 	
 !!! Note
 	`SimplePath.new()` is a constructor that creates a new Path and it should only be created once per agent. You can call `Path:Run()` on the same Path object multiple times without having to create a new Path every time you need to do pathfinding.
@@ -181,12 +206,15 @@ This event is fired after the `agent` reaches its target and returns the final `
 <br>
 
 #### WaypointReached
->`<RBXScriptSignal> Path.WaypointReached(agent: model, next: PathWaypoint)`
+>`<RBXScriptSignal> Path.WaypointReached(agent: model, last: PathWaypoint, next: PathWaypoint)`
 
 This event is fired every time the next `PathWaypoint` is reached.
 
 !!! Note
 	Make use of this event when pathfinding for non-humanoids.
+
+!!! Warning
+	For stabililty purposes, this event will **not** fire for the second-last waypoint when used for Humanoids.
 
 <br>
 
@@ -198,7 +226,7 @@ This event is fired every time the next `PathWaypoint` is reached.
 <br>
 
 #### Error
->`<RBXScriptSignal> Path.Error(error: ErrorType)`
+>`<RBXScriptSignal> Path.Error(error: ErrorType and string)`
 
 Fires when an error from any of the [ErrorTypes](#errortypes) occurs.
 

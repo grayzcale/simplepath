@@ -1,14 +1,23 @@
 --[[
----------------------------------------------------------------------
+-------------------------------------------------------------------
+
 Created by: @V3N0M_Z
-Website: https://00xima.github.io/RBLX-SimplePath/
+Reference: https://00xima.github.io/RBLX-SimplePath/
+License: MIT
+
 ---------------------------------------------------------------------
 ]]
 
-local Settings = {
+local DEFAULT_SETTINGS = {
+
 	TIME_VARIANCE = 0.07;
+
 	COMPARISON_CHECKS = 1;
+
+	JUMP_WHEN_STUCK = true;
 }
+
+---------------------------------------------------------------------
 
 local PathfindingService = game:GetService("PathfindingService")
 local Players = game:GetService("Players")
@@ -24,6 +33,7 @@ local Path = {
 		LimitReached = "LimitReached";
 		TargetUnreachable = "TargetUnreachable";
 		ComputationError = "ComputationError";
+		AgentStuck = "AgentStuck";
 	};
 }
 Path.__index = function(table, index)
@@ -137,7 +147,9 @@ local function moveToFinished(self, reached)
 	end
 
 	if reached and self._currentWaypoint + 1 <= #self._waypoints  then --Waypoint reached
-		invokeWaypointReached(self)
+		if self._currentWaypoint + 1 < #self._waypoints then
+			invokeWaypointReached(self)
+		end
 		self._currentWaypoint += 1
 		move(self)
 	elseif reached then --Target reached, pathfinding ends
@@ -158,8 +170,11 @@ local function comparePosition(self)
 	if self._currentWaypoint == #self._waypoints then return end
 	self._position._count = ((self._agent.PrimaryPart.Position - self._position._last).Magnitude <= 0.07 and (self._position._count + 1)) or 0
 	self._position._last = self._agent.PrimaryPart.Position
-	if self._position._count >= Settings.COMPARISON_CHECKS then
-		setJumpState(self)
+	if self._position._count >= self._settings.COMPARISON_CHECKS then
+		if self._settings.JUMP_WHEN_STUCK then
+			setJumpState(self)
+		end
+		declareError(self, self.ErrorType.AgentStuck)
 	end
 end
 
@@ -175,12 +190,13 @@ function Path.GetNearestCharacter(fromPosition)
 end
 
 --[[ CONSTRUCTOR ]]--
-function Path.new(agent, agentParameters)
+function Path.new(agent, agentParameters, override)
 	if not (agent and agent:IsA("Model") and agent.PrimaryPart) then
 		output(error, "Pathfinding agent must be a valid Model Instance with a set PrimaryPart.")
 	end
 
 	local self = setmetatable({
+		_settings = override or DEFAULT_SETTINGS;
 		_events = {
 			Reached = Instance.new("BindableEvent");
 			WaypointReached = Instance.new("BindableEvent");
@@ -198,6 +214,11 @@ function Path.new(agent, agentParameters)
 			_count = 0;
 		};
 	}, Path)
+
+	--Configure settings
+	for setting, value in pairs(DEFAULT_SETTINGS) do
+		self._settings[setting] = self._settings[setting] == nil and value or self._settings[setting]
+	end
 
 	--Path blocked connection
 	self._path.Blocked:Connect(function(...)
@@ -265,7 +286,7 @@ function Path:Run(target)
 	end
 
 	--Refer to Settings.TIME_VARIANCE
-	if os.clock() - self._t <= Settings.TIME_VARIANCE and self._humanoid then
+	if os.clock() - self._t <= self._settings.TIME_VARIANCE and self._humanoid then
 		task.wait(os.clock() - self._t)
 		declareError(self, self.ErrorType.LimitReached)
 		return false
