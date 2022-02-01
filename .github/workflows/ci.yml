@@ -34,6 +34,15 @@ jobs:
       - name: Build
         run: rojo build test.project.json -o test.rbxlx
 
+      # https://github.com/rojo-rbx/run-in-roblox/issues/21#issuecomment-1009419592
+      # Flip flag that causes issue
+      - name: Create fflag overrides
+        run: |
+          $flags = @{DFIntStudioUseNewLoginDataEndpointHundredthPercent=0; FFlagStudioUseNewLoginDataEndpoint=$false}
+          New-Item -Path 'C:/Program Files (x86)/Roblox/Versions/version-*/' -Name "ClientSettings" -ItemType "directory"
+          New-Item -Path 'C:/Program Files (x86)/Roblox/Versions/version-*/ClientSettings' -Name "ClientAppSettings.json"
+          $flags | ConvertTo-Json -depth 32| set-content -Path 'C:/Program Files (x86)/Roblox/Versions/version-*/ClientSettings/ClientAppSettings.json'
+      
       - name: Run
         run: run-in-roblox --place test.rbxlx --script tests/.server.lua
 
