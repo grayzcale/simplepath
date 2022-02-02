@@ -1,116 +1,103 @@
 return function()
-	
+
 	local SimplePath = require(game:GetService("ReplicatedStorage").SimplePath)
 	local Dummy = workspace.Dummy
 	local Goal = workspace.Goal
-	local Path = SimplePath.new(Dummy)
-	
-	-- selene: allow(unused_variable)
-	local reached, errored, stopped
-	local waypointsReached = 0
-	
-	Path.Reached:Connect(function()
-		reached = true
+	local Path
+
+	describe("constructor", function()
+
+		it("creates a new Path with provided character", function()
+			expect(SimplePath.new(Dummy)).to.be.ok()
+		end)
+
+		it("errors when model is not passed in", function()
+			expect(function()
+				SimplePath.new()
+			end).to.throw()
+		end)
+
+		it("errors when PrimaryPart is not set", function()
+			expect(function()
+				local c = Dummy:Clone()
+				c.PrimaryPart = nil
+				SimplePath.new(c)
+			end).to.throw()
+		end)
+
+		it("overrides default settings", function()
+			local config = SimplePath.new(Dummy, nil, {
+				TIME_VARIANCE = 2;
+				COMPARISON_CHECKS = 2;
+				JUMP_WHEN_STUCK = false;
+			})._settings
+			local defaults = {
+				TIME_VARIANCE = 0.07;
+				COMPARISON_CHECKS = 1;
+				JUMP_WHEN_STUCK = true;
+			}
+			expect(function()
+				for i, v in pairs(config) do
+					if defaults[i] == v then
+						error("Does not override default settings")
+					end
+				end
+			end).never.to.throw()
+		end)
+
 	end)
-	
-	Path.Error:Connect(function()
-		errored = true
-	end)
-	
-	Path.WaypointReached:Connect(function()
-		waypointsReached += 1
-	end)
-	
-	Path.Stopped:Connect(function()
-		stopped = true
-	end)
-	
-	local function reset()
-		Dummy.PrimaryPart.CFrame = CFrame.new(0, 3, 0)
-		if Path.Status == SimplePath.StatusType.Active then
-			Path:Stop()
-		end
-	end
-	
-	local function getCount(t)
-		local c = 0
-		for _, _ in pairs(t) do
-			c += 1
-		end
-		return c
-	end
-	
+
 	describe("Path:Run()", function()
 
-		-- local t
-		
-		-- beforeAll(function()
-		-- 	t = os.time()
-		-- end)
-		
-		afterAll(function()
-			reset()
-			task.wait(1)
+		beforeAll(function()
+			Path = SimplePath.new(Dummy)
 		end)
-		
-		it("should start pathfinding without errors", function()
+
+		it("errors if no valid Vector3 or BasePart is given", function()
+			expect(function()
+				Path:Run()
+			end).to.throw()
+		end)
+
+		it("should change Path.Status to StatusType.Active", function()
+			expect(Path.Status == SimplePath.StatusType.Active).to.be.ok()
+		end)
+
+		it("should return true", function()
 			expect(Path:Run(Goal)).to.be.ok()
 		end)
-		
-		it("should change state to active when pathfinding", function()
-			Path:Run(Goal)
-			expect(Path.Status).to.equal(SimplePath.StatusType.Active)
-		end)
-		
-		-- it("should fire Path.Reached after reaching goal", function()
-		-- 	repeat
-		-- 		task.wait()
-		-- 	until reached or os.difftime(os.time(), t) > 4
-		-- 	print("Position: ", os.difftime(os.time(), t), Dummy.PrimaryPart.Position)
-		-- 	expect(reached).to.be.ok()
-		-- end)
-		
-		-- it("should reach all the waypoints to goal", function()
-		-- 	print("Total Waypoints: ", waypointsReached)
-		-- 	expect(waypointsReached).to.equal(7)
-		-- end)
-		
+
 	end)
 	
+	
 	describe("Path:Stop()", function()
-		
-		local midPos
-		
 		beforeAll(function()
-			Path:Run(Goal)
-			task.wait(1)
 			Path:Stop()
-			task.wait(1)
-			midPos = Dummy.PrimaryPart.Position
-			task.wait(1)
 		end)
-		
-		it("should stop pathfinding", function()
-			expect(midPos).to.equal(Dummy.PrimaryPart.Position)
+		it("should change Path.Status to StatusType.Idle", function()
+			expect(Path.Status == SimplePath.StatusType.Idle).to.be.ok()
 		end)
-		
-		it("should fire Path.Stopped", function()
-			expect(stopped).to.be.ok()
+	end)
+	
+	describe("test", function()
+		it("should not produce any ErrorType", function()
+			expect(Path.LastError).never.to.be.ok()
 		end)
-		
-		it("should change state back to idle", function()
-			expect(Path.Status).to.equal(SimplePath.StatusType.Idle)
-		end)
-		
 	end)
 	
 	describe("Path:Destroy()", function()
-		
-		it("should destroy Path", function()
+		beforeAll(function()
 			Path:Destroy()
-			expect(getCount(Path)).to.equal(0)
 		end)
-		
+
+		it("should destroy Path", function()
+			expect(function()
+				for k, _ in pairs(Path) do
+					error(("Path.%s exists!"):format(k))
+				end
+			end).never.to.throw()
+			expect(getmetatable(Path)).never.to.be.ok()
+		end)
 	end)
-	
+
 end

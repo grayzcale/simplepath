@@ -241,18 +241,11 @@ function Path:Destroy()
 	if rawget(self, "Visualize") then
 		self._visualWaypoints = destroyVisualWaypoints(self._visualWaypoints)
 	end
-	self._agent = nil
-	self._humanoid = nil
 	self._path:Destroy()
-	self._path =nil
-	self._status = nil
-	self._t = nil
-	self._position = nil
-	self._target = nil
-	self._waypoints = nil
-	self._currentWaypoint = nil
-	self._lastError = nil
 	setmetatable(self, nil)
+	for k, _ in pairs(self) do
+		self[k] = nil
+	end
 end
 
 function Path:Stop()
