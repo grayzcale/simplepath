@@ -19,13 +19,14 @@ return function()
 
 		it("errors when PrimaryPart is not set", function()
 			expect(function()
-				local c = Dummy:Clone(); c.PrimaryPart = nil
+				local c = Dummy:Clone()
+				c.PrimaryPart = nil
 				SimplePath.new(c)
 			end).to.throw()
 		end)
 
 		it("overrides default settings", function()
-			local config = SimplePath.new(Dummy, _, {
+			local config = SimplePath.new(Dummy, nil, {
 				TIME_VARIANCE = 2;
 				COMPARISON_CHECKS = 2;
 				JUMP_WHEN_STUCK = false;
@@ -38,7 +39,7 @@ return function()
 			expect(function()
 				for i, v in pairs(config) do
 					if defaults[i] == v then
-						error()
+						error("Does not override default settings")
 					end
 				end
 			end).never.to.throw()
