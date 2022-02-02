@@ -8,7 +8,7 @@ To get started with using SimplePath visit [Getting Started](guides/getting-star
 
 **Installation:**
 
-Get the SimplePath modulescript from [Roblox](https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module) or get the [latest release](https://github.com/00xima/RBLX-SimplePath/releases) from GitHub.
+Get the SimplePath modulescript from [Roblox](https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module) or get the [latest release](https://github.com/V3N0M-Z/RBLX-SimplePath/releases) from GitHub.
 
 <br>
 
