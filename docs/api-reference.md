@@ -38,13 +38,13 @@ During pathfinding, in the case where the agent is stationary at the same positi
 ```lua linenums="1" title="Example"
 
 Path.Error:Connect(function(errorType)
-	if errorType == SimplePath.ErrorType.ComputeError then
+	if errorType == SimplePath.ErrorType.ComputationError then
 		--code (1)
 	end
 end)
 ```
 
-1. This code block will run whenever there's a ComputeError.
+1. This code block will run whenever there's a ComputationError.
 
 !!! Info
 	Use ErrorTypes to determine the type of error received from the Path.Error event. For additional debug options, see [Path.LastError](#lasterror).
@@ -67,8 +67,8 @@ Target is unreachable.
 
 <br>
 
-### ComputeError
-> `ErrorType.ComputeError: ErrorType and string`
+### ComputationError
+> `ErrorType.ComputationError: ErrorType and string`
 
 Path computation failed.
 
@@ -171,7 +171,7 @@ Returns the last [ErrorType](#errortypes).
 #### Run
 >`<boolean> Path:Run(target: Vector3 or BasePart)`
 
-This method returns `true` if the computation was successful. If it returns `false`, the [Path.Error](#error) event is fired with a ComputeError. This method automatically yields if the elapsed time between consecutive calls is less than Settings.TIME_VARIANCE.
+This method returns `true` if the computation was successful. If it returns `false`, the [Path.Error](#error) event is fired with a ComputationError. This method automatically yields if the elapsed time between consecutive calls is less than Settings.TIME_VARIANCE.
 
 <br>
 
