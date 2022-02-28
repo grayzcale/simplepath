@@ -1,3 +1,9 @@
+## v2.2.1 (2022-02-28)
+* Fixed `Path:Destroy()`
+	* Properly handles the deletion of visual waypoints
+	* Automatically stops further execution when destroyed
+* Updated reference link
+
 ## v2.2.0 (2022-01-29)
 * Fixed bug with Path.WaypointReached
 	* Emerges if `Path:Run()` is binded to both `Path.WaypointReached` and `Path.Reached` for a Humanoid
