@@ -2,7 +2,7 @@
 -------------------------------------------------------------------
 
 Created by: @V3N0M_Z
-Reference: https://00xima.github.io/RBLX-SimplePath/
+Reference: https://v3n0m-z.github.io/RBLX-SimplePath/
 License: MIT
 
 ---------------------------------------------------------------------
