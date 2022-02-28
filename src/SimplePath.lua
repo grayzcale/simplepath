@@ -2,7 +2,7 @@
 -------------------------------------------------------------------
 
 Created by: @V3N0M_Z
-Reference: https://00xima.github.io/RBLX-SimplePath/
+Reference: https://v3n0m-z.github.io/RBLX-SimplePath/
 License: MIT
 
 ---------------------------------------------------------------------
@@ -128,6 +128,9 @@ local function invokeWaypointReached(self)
 end
 
 local function moveToFinished(self, reached)
+	
+	--Stop execution if Path is destroyed
+	if not getmetatable(self) then return end
 
 	--Handle case for non-humanoids
 	if not self._humanoid then
@@ -238,7 +241,7 @@ function Path:Destroy()
 		event:Destroy()
 	end
 	self._events = nil
-	if rawget(self, "Visualize") then
+	if rawget(self, "_visualWaypoints") then
 		self._visualWaypoints = destroyVisualWaypoints(self._visualWaypoints)
 	end
 	self._path:Destroy()
