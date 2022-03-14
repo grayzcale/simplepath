@@ -17,3 +17,4 @@ Get the SimplePath modulescript from [Roblox](https://www.roblox.com/library/674
 - <a href=https://github.com/00xima/SimplePath target=_blank>GitHub</a>
 - <a href=https://devforum.roblox.com/t/1196762 target=_blank>DevForum</a>
 - <a href=https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module target=_blank>Roblox</a>
+- <a href=https://discord.gg/44nzKyBM7B target=_blank>Discord</a>
