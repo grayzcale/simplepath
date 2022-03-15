@@ -1,17 +1,26 @@
-name: Release messages to discord announcement channel
+name: Discord release
 
-on: 
+on:
   release:
-    types:
-      - created
+    types: [published]
 
 jobs:
-  run_main:
-    runs-on: ubuntu-18.04
-    name: Send release message
+  post:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     steps:
-      - name: Sending message
-        uses: nhevia/discord-styled-releases@main
-        with:
-          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
-          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+    - name: Get release name
+      id: get-release-name
+      run: "echo ::set-output name=name::${RELEASE:-$TAG}"
+      env:
+        RELEASE: ${{ github.event.release.name }}
+        TAG: ${{ github.event.release.tag_name }}
+
+    - name: Post release
+      uses: kludge-cs/gitcord-release-changelogger@v3.0.0
+      with:
+        release-body: ${{ github.event.release.body }}
+        release-name: ${{ steps.get-release-name.outputs.name }}
+        webhook-url: ${{ secrets.RELEASE_WEBHOOK }}
