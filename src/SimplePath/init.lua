@@ -21,9 +21,13 @@ local DEFAULT_SETTINGS = {
 
 local PathfindingService = game:GetService("PathfindingService")
 local Players = game:GetService("Players")
+
+local Signal = require(script.Signal)
+
 local function output(func, msg)
-	func(((func == error and "SimplePath Error: ") or "SimplePath: ")..msg)
+	func((if func == error then "SimplePath Error: " else "SimplePath: ")..msg)
 end
+
 local Path = {
 	StatusType = {
 		Idle = "Idle";
@@ -40,10 +44,10 @@ Path.__index = function(table, index)
 	if index == "Stopped" and not table._humanoid then
 		output(error, "Attempt to use Path.Stopped on a non-humanoid.")
 	end
-	return (table._events[index] and table._events[index].Event)
-		or (index == "LastError" and table._lastError)
-		or (index == "Status" and table._status)
-		or Path[index]
+	return if table._events[index] then table._events[index]
+		elseif index == "LastError" then table._lastError
+		elseif index == "Status" then table._status
+		else Path[index]
 end
 
 --Used to visualize waypoints
@@ -68,9 +72,9 @@ local function createVisualWaypoints(waypoints)
 		visualWaypointClone.Position = waypoint.Position
 		visualWaypointClone.Parent = workspace
 		visualWaypointClone.Color =
-			(waypoint == waypoints[#waypoints] and Color3.fromRGB(0, 255, 0))
-			or (waypoint.Action == Enum.PathWaypointAction.Jump and Color3.fromRGB(255, 0, 0))
-			or Color3.fromRGB(255, 139, 0)
+			if waypoint == waypoints[#waypoints] then Color3.fromRGB(0, 255, 0)
+			elseif waypoint.Action == Enum.PathWaypointAction.Jump then Color3.fromRGB(255, 0, 0)
+			else Color3.fromRGB(255, 139, 0)
 		table.insert(visualWaypoints, visualWaypointClone)
 	end
 	return visualWaypoints
@@ -199,13 +203,13 @@ function Path.new(agent, agentParameters, override)
 	end
 
 	local self = setmetatable({
-		_settings = override or DEFAULT_SETTINGS;
+		_settings = if override then override else DEFAULT_SETTINGS;
 		_events = {
-			Reached = Instance.new("BindableEvent");
-			WaypointReached = Instance.new("BindableEvent");
-			Blocked = Instance.new("BindableEvent");
-			Error = Instance.new("BindableEvent");
-			Stopped = Instance.new("BindableEvent");
+			Reached = Signal.new();
+			WaypointReached = Signal.new();
+			Blocked = Signal.new();
+			Error = Signal.new();
+			Stopped = Signal.new();
 		};
 		_agent = agent;
 		_humanoid = agent:FindFirstChildOfClass("Humanoid");
@@ -220,7 +224,7 @@ function Path.new(agent, agentParameters, override)
 
 	--Configure settings
 	for setting, value in pairs(DEFAULT_SETTINGS) do
-		self._settings[setting] = self._settings[setting] == nil and value or self._settings[setting]
+		self._settings[setting] = if self._settings[setting] == nil then value else self._settings[setting]
 	end
 
 	--Path blocked connection
@@ -238,7 +242,7 @@ end
 --[[ NON-STATIC METHODS ]]--
 function Path:Destroy()
 	for _, event in ipairs(self._events) do
-		event:Destroy()
+		event:Disconnect()
 	end
 	self._events = nil
 	if rawget(self, "_visualWaypoints") then
@@ -277,7 +281,7 @@ function Path:Run(target)
 	end
 
 	--Parameter check
-	if not (target and (typeof(target) == "Vector3" or target:IsA("BasePart"))) then
+	if not (target and (if typeof(target) == "Vector3" then typeof(target) == "Vector3" else target:IsA("BasePart"))) then
 		output(error, "Pathfinding target must be a valid Vector3 or BasePart.")
 	end
 
@@ -291,8 +295,9 @@ function Path:Run(target)
 	end
 
 	--Compute path
+	local pathValue = typeof(target) == "Vector3" and target
 	local pathComputed, _ = pcall(function()
-		self._path:ComputeAsync(self._agent.PrimaryPart.Position, (typeof(target) == "Vector3" and target) or target.Position)
+		self._path:ComputeAsync(self._agent.PrimaryPart.Position, if pathValue then pathValue else target.Position)
 	end)
 
 	--Make sure path computation is successful
@@ -307,7 +312,8 @@ function Path:Run(target)
 	end
 
 	--Set status to active; pathfinding starts
-	self._status = (self._humanoid and Path.StatusType.Active) or Path.StatusType.Idle
+	local statusValue = self._humanoid and Path.StatusType.Active
+	self._status = if statusValue then statusValue else Path.StatusType.Idle
 	self._target = target
 
 	--Set network owner to server to prevent "hops"
@@ -329,7 +335,7 @@ function Path:Run(target)
 	self._visualWaypoints = (self.Visualize and createVisualWaypoints(self._waypoints))
 
 	--Create a new move connection if it doesn't exist already
-	self._moveConnection = self._humanoid and (self._moveConnection or self._humanoid.MoveToFinished:Connect(function(...)
+	self._moveConnection = self._humanoid and (if self._moveConnection then self._moveConnection else self._humanoid.MoveToFinished:Connect(function(...)
 		moveToFinished(self, ...)
 	end))
 
