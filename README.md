@@ -1,4 +1,5 @@
-![](https://doy2mn9upadnk.cloudfront.net/uploads/default/original/4X/0/7/9/079f2967c6063a0052eb4809633b1d1e498a345a.png)
+![](https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/0/7/9/079f2967c6063a0052eb4809633b1d1e498a345a.png)
+
 
 <!-- ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/zeref-z/rblx-simplepath/CI?label=CI&style=plastic) -->
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Zeref-Z/RBLX-SimplePath/docs.yml?branch=main&label=docs&style=plastic)
