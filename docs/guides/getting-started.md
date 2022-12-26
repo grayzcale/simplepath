@@ -112,7 +112,7 @@ Path:Run(Goal)
 ```
 
 <video width=100% height=100% controls>
-    <source style="object-fit: cover;" src="https://v3n0m-z.github.io/RBLX-SimplePath/assets/humanoid_example_1.mp4" types="video/mp4">
+    <source style="object-fit: cover;" src="https://zeref-z.github.io/RBLX-SimplePath/assets/humanoid_example_1.mp4" types="video/mp4">
 </video>
 
 !!! Info
