@@ -1,7 +1,7 @@
 site_name: "SimplePath"
-site_url: https://v3n0m-z.github.io/RBLX-SimplePath/
-repo_url: https://github.com/V3N0M-Z/RBLX-SimplePath
-repo_name: V3N0M-Z/RBLX-SimplePath
+site_url: https://wicked-wlzard.github.io/simplepath/
+repo_url: https://github.com/wicked-wlzard/simplepath
+repo_name: wicked-wlzard/simplepath
 site_description: SimplePath is an open-source pathfinding module that gives you the ability to quickly create a pathfinding script for humanoids and non-humanoids with just a few lines of code.
 
 # Local

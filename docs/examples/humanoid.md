@@ -7,7 +7,7 @@ The following examples is explained in detail [here](../guides/getting-started.m
 ## Using Events
 
 <video width=100% height=100% controls>
-    <source style="object-fit: cover;" src="https://zeref-z.github.io/RBLX-SimplePath/assets/humanoid_example_1.mp4" types="video/mp4">
+    <source style="object-fit: cover;" src="https://wicked-wlzard.github.io/simplepath/assets/humanoid_example_1.mp4" types="video/mp4">
 </video>
 
 ```lua linenums="1"
