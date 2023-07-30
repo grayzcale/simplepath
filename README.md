@@ -18,6 +18,6 @@ Get the SimplePath modulescript from [Roblox](https://www.roblox.com/library/674
 
 **Other Links:**
 
-- <a href=https://grayzcale.github.io/RBLX-SimplePath target=_blank>Documentation/Examples</a>
+- <a href=https://grayzcale.github.io/simplepath/ target=_blank>Documentation/Examples</a>
 - <a href=https://devforum.roblox.com/t/1196762 target=_blank>DevForum</a>
 - <a href=https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module target=_blank>Roblox</a>
