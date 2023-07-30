@@ -1,0 +1,1218 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="SimplePath is an open-source pathfinding module that gives you the ability to quickly create a pathfinding script for humanoids and non-humanoids with just a few lines of code.">
+      
+      
+      
+        <link rel="canonical" href="https://grayzcale.github.io/simplepath/api-reference/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../guides/getting-started/">
+      
+      <link rel="icon" href="../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>API Reference - SimplePath</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="deep-orange">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SimplePath" class="md-header__button md-logo" aria-label="SimplePath" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SimplePath
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="deep-orange"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/grayzcale/simplepath" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    grayzcale/simplepath
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SimplePath" class="md-nav__button md-logo" aria-label="SimplePath" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    SimplePath
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/grayzcale/simplepath" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    grayzcale/simplepath
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          API Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        API Reference
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time_variance" class="md-nav__link">
+    TIME_VARIANCE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison_checks" class="md-nav__link">
+    COMPARISON_CHECKS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jump_when_stuck" class="md-nav__link">
+    JUMP_WHEN_STUCK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errortypes" class="md-nav__link">
+    ErrorTypes
+  </a>
+  
+    <nav class="md-nav" aria-label="ErrorTypes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitreached" class="md-nav__link">
+    LimitReached
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#targetunreachable" class="md-nav__link">
+    TargetUnreachable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computationerror" class="md-nav__link">
+    ComputationError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agentstuck" class="md-nav__link">
+    AgentStuck
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statustypes" class="md-nav__link">
+    StatusTypes
+  </a>
+  
+    <nav class="md-nav" aria-label="StatusTypes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idle" class="md-nav__link">
+    Idle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active" class="md-nav__link">
+    Active
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    Static Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Static Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getnearestcharacter" class="md-nav__link">
+    GetNearestCharacter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    Path
+  </a>
+  
+    <nav class="md-nav" aria-label="Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    Properties
+  </a>
+  
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualize" class="md-nav__link">
+    Visualize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lasterror" class="md-nav__link">
+    LastError
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    Run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop" class="md-nav__link">
+    Stop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destroy" class="md-nav__link">
+    Destroy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    Events
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reached" class="md-nav__link">
+    Reached
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waypointreached" class="md-nav__link">
+    WaypointReached
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocked" class="md-nav__link">
+    Blocked
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error" class="md-nav__link">
+    Error
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stopped" class="md-nav__link">
+    Stopped
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/humanoid/" class="md-nav__link">
+        Humanoid
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/non-humanoid/" class="md-nav__link">
+        Non-Humanoid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time_variance" class="md-nav__link">
+    TIME_VARIANCE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison_checks" class="md-nav__link">
+    COMPARISON_CHECKS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jump_when_stuck" class="md-nav__link">
+    JUMP_WHEN_STUCK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errortypes" class="md-nav__link">
+    ErrorTypes
+  </a>
+  
+    <nav class="md-nav" aria-label="ErrorTypes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitreached" class="md-nav__link">
+    LimitReached
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#targetunreachable" class="md-nav__link">
+    TargetUnreachable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computationerror" class="md-nav__link">
+    ComputationError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agentstuck" class="md-nav__link">
+    AgentStuck
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statustypes" class="md-nav__link">
+    StatusTypes
+  </a>
+  
+    <nav class="md-nav" aria-label="StatusTypes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idle" class="md-nav__link">
+    Idle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active" class="md-nav__link">
+    Active
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    Static Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Static Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getnearestcharacter" class="md-nav__link">
+    GetNearestCharacter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    Path
+  </a>
+  
+    <nav class="md-nav" aria-label="Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    Properties
+  </a>
+  
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualize" class="md-nav__link">
+    Visualize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lasterror" class="md-nav__link">
+    LastError
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    Run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop" class="md-nav__link">
+    Stop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destroy" class="md-nav__link">
+    Destroy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    Events
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reached" class="md-nav__link">
+    Reached
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waypointreached" class="md-nav__link">
+    WaypointReached
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocked" class="md-nav__link">
+    Blocked
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error" class="md-nav__link">
+    Error
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stopped" class="md-nav__link">
+    Stopped
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+  <h1>API Reference</h1>
+
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>The settings below are default values that can be accessed directly from the SimplePath modulescript.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Changing default settings will only affect agents that don't already have overridden settings.</em></p>
+<p>To override settings for a single agent, pass in a dictionary (with a setting as the key) to the constructor and include values in the dictionary to override. See <a href="#constructor">constructor</a> for more info.</p>
+</div>
+<p><br></p>
+<h3 id="time_variance">TIME_VARIANCE<a class="headerlink" href="#time_variance" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>Settings.TIME_VARIANCE: number</code> [default: 0.07]</p>
+</blockquote>
+<p>Represents the minimum time in seconds elapsed between Path.Run calls. The default setting is roughly 14 computations per second. This is necessary to allow the agent the freedom for movement (give the agent some time to reach the next waypoint before computing a new path).</p>
+<p><br></p>
+<h3 id="comparison_checks">COMPARISON_CHECKS<a class="headerlink" href="#comparison_checks" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>Settings.COMPARISON_CHECKS: number</code> [default: 1]</p>
+</blockquote>
+<p>During pathfinding, in the case where the agent is stationary at the same position for 1 + COMPARISON_CHECKS consecutive Path.Run calls, the agent attempts to avoid the obstruction by jumping. This is necessary in order to prevent the agent from being at rest for infinity (unless otherwise moved by an external object).</p>
+<p><br></p>
+<h3 id="jump_when_stuck">JUMP_WHEN_STUCK<a class="headerlink" href="#jump_when_stuck" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>Settings.JUMP_WHEN_STUCK: boolean</code> [default: true] [humanoid only]</p>
+</blockquote>
+<p><code>Settings.JUMP_WHEN_STUCK</code> is directly dependant on <code>Settings.COMPARISON_CHECKS</code>. If this is false, the agent will not attempt to jump.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Overriding this setting to <code>false</code> will prevent the agent from jumping which can cause the agent to remain at rest for infinity. Do not disable this setting without properly handling it using <a href="#agentstuck">ErrorType.AgentStuck</a>.</p>
+</div>
+<hr>
+
+<h2 id="errortypes">ErrorTypes<a class="headerlink" href="#errortypes" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Example</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Path</span><span class="p">.</span><span class="n">Error</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">errorType</span><span class="p">)</span>
+    <span class="kr">if</span> <span class="n">errorType</span> <span class="o">==</span> <span class="n">SimplePath</span><span class="p">.</span><span class="n">ErrorType</span><span class="p">.</span><span class="n">ComputationError</span> <span class="kr">then</span>
+        <span class="c1">--code (1)</span>
+    <span class="kr">end</span>
+<span class="kr">end</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>This code block will run whenever there's a ComputationError.</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Use ErrorTypes to determine the type of error received from the Path.Error event. For additional debug options, see <a href="#lasterror">Path.LastError</a>.</p>
+</div>
+<p><br></p>
+<h3 id="limitreached">LimitReached<a class="headerlink" href="#limitreached" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>ErrorType.LimitReached: ErrorType and string</code></p>
+</blockquote>
+<p>The elapsed time between Path.Run calls is less than Settings.TIME_VARIANCE. For stability purposes, this error is invoked after <code>Path:Run()</code> yields for Settings.TIME_VARIANCE.</p>
+<p>It is recommended to avoid depending on this ErrorType.</p>
+<p><br></p>
+<h3 id="targetunreachable">TargetUnreachable<a class="headerlink" href="#targetunreachable" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>ErrorType.TargetUnreachable: ErrorType and string</code></p>
+</blockquote>
+<p>Target is unreachable.</p>
+<p><br></p>
+<h3 id="computationerror">ComputationError<a class="headerlink" href="#computationerror" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>ErrorType.ComputationError: ErrorType and string</code></p>
+</blockquote>
+<p>Path computation failed.</p>
+<p><br></p>
+<h3 id="agentstuck">AgentStuck<a class="headerlink" href="#agentstuck" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>ErrorType.AgentStuck: ErrorType and string</code></p>
+</blockquote>
+<p>Agent is stuck (possibly due to an obstruction of some kind).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is different from Path.Blocked in the sense that it is detected by SimplePath itself when the agent does not move for <a href="#comparison_checks">Settings.COMPARISON_CHECKS</a> + 1 consecutive Path.Run calls.</p>
+</div>
+<hr>
+
+<h2 id="statustypes">StatusTypes<a class="headerlink" href="#statustypes" title="Permanent link">&para;</a></h2>
+<p>Read the <a href="#status">Path.Status</a> property to get the current Path status.</p>
+<p><br></p>
+<h3 id="idle">Idle<a class="headerlink" href="#idle" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>StatusType.Idle: StatusType and string</code></p>
+</blockquote>
+<p>Path is in idle state.</p>
+<p><br></p>
+<h3 id="active">Active<a class="headerlink" href="#active" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>StatusType.Active: StatusType and string</code></p>
+</blockquote>
+<p>Path is in active state.</p>
+<hr>
+
+<h2 id="static-methods">Static Methods<a class="headerlink" href="#static-methods" title="Permanent link">&para;</a></h2>
+<p><br></p>
+<h3 id="getnearestcharacter">GetNearestCharacter<a class="headerlink" href="#getnearestcharacter" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>&lt;model or nil&gt; SimplePath.GetNearestCharacter(fromPosition: Vector3)</code> </p>
+</blockquote>
+<p>Returns a <code>model</code> of the nearest character from the provided <code>Vector3</code> position or <code>nil</code> if no character is found.</p>
+<hr>
+
+<h2 id="path">Path<a class="headerlink" href="#path" title="Permanent link">&para;</a></h2>
+<p><br></p>
+<h4 id="constructor">Constructor<a class="headerlink" href="#constructor" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>&lt;Path&gt; SimplePath.new(agent: model, agentParameters: Dictionary or nil, override: Dictionary or nil)</code></p>
+</blockquote>
+<p>Creates a new Path object using the <code>agent</code> with optional <code>agentParameters</code>. Pass in <code>override</code> as a dictionary that includes a <a href="#configuration">setting</a> and its overridden value.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>SimplePath.new()</code> is a constructor that creates a new Path and it should only be created once per agent. You can call <code>Path:Run()</code> on the same Path object multiple times without having to create a new Path every time you need to do pathfinding.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Use agent parameters for custom characters to compute the best path. Find out more about agent parameters and how to use them at <a href="https://developer.roblox.com/en-us/api-reference/function/PathfindingService/CreatePath">Roblox Developer Hub</a>.</p>
+<p>Refine the path computation further by using pathfinding modifiers. To use this feature with SimplePath, Simply include modifier data in <code>agentParameters</code> normally. Find out more about pathfinding modifiers at <a href="https://developer.roblox.com/en-us/api-reference/class/PathfindingService">Roblox Developer Hub</a>.</p>
+</div>
+<hr>
+
+<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<p><br></p>
+<h4 id="visualize">Visualize<a class="headerlink" href="#visualize" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>Path.Visualize: boolean</code> [default: false]</p>
+</blockquote>
+<p>Set this property to <code>true</code> before the first <code>Path:Run()</code> to visualize waypoints.</p>
+<p><br></p>
+<h4 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>Path.Status: SimplePath.StatusType</code> [readonly]</p>
+</blockquote>
+<p>Returns the current <a href="#statustypes">StatusType</a> of Path.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will return <code>SimplePath.StatusType.Idle</code> always for non-humanoids since pathfinding for a non-humanoid is meant to be handled manually.</p>
+</div>
+<p><br></p>
+<h4 id="lasterror">LastError<a class="headerlink" href="#lasterror" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>Path.LastError: SimplePath.ErrorType</code> [readonly]</p>
+</blockquote>
+<p>Returns the last <a href="#errortypes">ErrorType</a>.</p>
+<hr>
+
+<h3 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h3>
+<p><br></p>
+<h4 id="run">Run<a class="headerlink" href="#run" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>&lt;boolean&gt; Path:Run(target: Vector3 or BasePart)</code></p>
+</blockquote>
+<p>This method returns <code>true</code> if the computation was successful. If it returns <code>false</code>, the <a href="#error">Path.Error</a> event is fired with a ComputationError. This method automatically yields if the elapsed time between consecutive calls is less than Settings.TIME_VARIANCE.</p>
+<p><br></p>
+<h4 id="stop">Stop<a class="headerlink" href="#stop" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>&lt;void&gt; Path:Stop()</code></p>
+</blockquote>
+<p>Stops the navigation of the current Path if Path.Status is in an active state and fires the <a href="#stopped">Path.Stopped</a> event.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method cannot be used for non-humanoids since pathfinding is meant to be handled manually.</p>
+</div>
+<p><br></p>
+<h4 id="destroy">Destroy<a class="headerlink" href="#destroy" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>&lt;void&gt; Path:Destroy()</code></p>
+</blockquote>
+<p>Destroy Path.</p>
+<hr>
+
+<h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h3>
+<p><br></p>
+<h4 id="reached">Reached<a class="headerlink" href="#reached" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>&lt;RBXScriptSignal&gt; Path.Reached(agent: model, finalWaypoint: PathWaypoint)</code></p>
+</blockquote>
+<p>This event is fired after the <code>agent</code> reaches its target and returns the final <code>PathWaypoint</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Find out more about <code>PathWaypoint</code> at <a href="https://developer.roblox.com/en-us/api-reference/datatype/PathWaypoint">Roblox Developer Hub</a>.</p>
+</div>
+<p><br></p>
+<h4 id="waypointreached">WaypointReached<a class="headerlink" href="#waypointreached" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>&lt;RBXScriptSignal&gt; Path.WaypointReached(agent: model, last: PathWaypoint, next: PathWaypoint)</code></p>
+</blockquote>
+<p>This event is fired every time the next <code>PathWaypoint</code> is reached.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make use of this event when pathfinding for non-humanoids.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For stabililty purposes, this event will <strong>not</strong> fire for the second-last waypoint when used for Humanoids.</p>
+</div>
+<p><br></p>
+<h4 id="blocked">Blocked<a class="headerlink" href="#blocked" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>&lt;RBXScriptSignal&gt; Path.Blocked(agent: model, blocked: PathWaypoint)</code></p>
+</blockquote>
+<p><code>blocked</code> is a <code>PathWaypoint</code> such that: <code>currentWaypoint.Index &lt;= blocked.Index &lt;= currentWaypoint.Index + 1</code>.</p>
+<p><br></p>
+<h4 id="error">Error<a class="headerlink" href="#error" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>&lt;RBXScriptSignal&gt; Path.Error(error: ErrorType and string)</code></p>
+</blockquote>
+<p>Fires when an error from any of the <a href="#errortypes">ErrorTypes</a> occurs.</p>
+<p><br></p>
+<h4 id="stopped">Stopped<a class="headerlink" href="#stopped" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>&lt;RBXScriptSignal&gt; Path.Stopped(agent: model)</code></p>
+</blockquote>
+<p>Fires after <code>Path:Stop()</code> is called.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Just like the Path.Stop method, this event should only be used for humanoids.</p>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate"], "search": "../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+    
+  </body>
+</html>

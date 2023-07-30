@@ -1,0 +1,724 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="SimplePath is an open-source pathfinding module that gives you the ability to quickly create a pathfinding script for humanoids and non-humanoids with just a few lines of code.">
+      
+      
+      
+        <link rel="canonical" href="https://grayzcale.github.io/simplepath/guides/getting-started/">
+      
+      
+        <link rel="prev" href="../../api-reference/">
+      
+      
+        <link rel="next" href="../../examples/humanoid/">
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Getting Started - SimplePath</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="deep-orange">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SimplePath" class="md-header__button md-logo" aria-label="SimplePath" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SimplePath
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Getting Started
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="deep-orange"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/grayzcale/simplepath" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    grayzcale/simplepath
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SimplePath" class="md-nav__button md-logo" aria-label="SimplePath" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    SimplePath
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/grayzcale/simplepath" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    grayzcale/simplepath
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/" class="md-nav__link">
+        API Reference
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="true">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Getting Started
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-1-using-events" class="md-nav__link">
+    Method 1: Using Events
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-2-using-loops" class="md-nav__link">
+    Method 2: Using Loops
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-the-right-method" class="md-nav__link">
+    Choosing the right method
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/humanoid/" class="md-nav__link">
+        Humanoid
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/non-humanoid/" class="md-nav__link">
+        Non-Humanoid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-1-using-events" class="md-nav__link">
+    Method 1: Using Events
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-2-using-loops" class="md-nav__link">
+    Method 2: Using Loops
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-the-right-method" class="md-nav__link">
+    Choosing the right method
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+  <h1>Getting Started</h1>
+
+<p>This tutorial shows you how you can set up SimplePath and teaches you a basic implementation of the module.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>Get the module from the <a href="https://www.roblox.com/library/6744337775/SimplePath-Pathfinding-Module">Roblox library</a> or get the <a href="https://github.com/00xima/RBLX-SimplePath/releases">latest release</a> from GitHub.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the purposes of the tutorial, the script assumes the modulescript is in <code>game.ServerStorage</code>.</p>
+</div>
+<p>After you insert the module to your place, add a new script to <code>game.ServerScriptService</code> and paste the folowing code to start using the module:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">--Import the module so you can start using it</span>
+<span class="kd">local</span> <span class="n">ServerStorage</span> <span class="o">=</span> <span class="n">game</span><span class="p">:</span><span class="n">GetService</span><span class="p">(</span><span class="s2">&quot;ServerStorage&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">SimplePath</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="n">ServerStorage</span><span class="p">.</span><span class="n">SimplePath</span><span class="p">)</span>
+</code></pre></div>
+<p>The next part of the code defines all of the different variables that will be used in the script:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">--Define npc</span>
+<span class="kd">local</span> <span class="n">Dummy</span> <span class="o">=</span> <span class="n">workspace</span><span class="p">.</span><span class="n">Dummy</span>
+
+<span class="c1">--Define a part called &quot;Goal&quot;</span>
+<span class="kd">local</span> <span class="n">Goal</span> <span class="o">=</span> <span class="n">workspace</span><span class="p">.</span><span class="n">Goal</span>
+
+<span class="c1">--Create a new Path using the Dummy</span>
+<span class="kd">local</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">SimplePath</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">Dummy</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>SimplePath.new()</code> is a constructor that creates a new Path and it should only be created once per agent. You can call <code>Path:Run()</code> on the same Path object multiple times without having to create a new Path every time you need to do pathfinding.</p>
+</div>
+<hr>
+
+<h2 id="method-1-using-events">Method 1: Using Events<a class="headerlink" href="#method-1-using-events" title="Permanent link">&para;</a></h2>
+<p>The following part of the tutorial shows you how you can make a pathfinding script using only events. </p>
+<p>To make the Dummy move towards the goal, you only need one line of code:
+<div class="highlight"><pre><span></span><code><span class="n">Path</span><span class="p">:</span><span class="n">Run</span><span class="p">(</span><span class="n">Goal</span><span class="p">)</span>
+</code></pre></div></p>
+<p>Even though this single line of code seems sufficient, there are a few important things to keep in mind. Firstly, if some object comes in-between the path of the Dummy, the Dummy will just stop pathfinding before reaching the goal because <code>Path:Run()</code> is not called a second time to compute the path again. To fix this, you can use the <code>Path.Blocked</code> event and call <code>Path:Run()</code> whenever something blocks the path:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">--Dummy knows to compute path again if something blocks the path</span>
+<span class="n">Path</span><span class="p">.</span><span class="n">Blocked</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+    <span class="n">Path</span><span class="p">:</span><span class="n">Run</span><span class="p">(</span><span class="n">Goal</span><span class="p">)</span>
+<span class="kr">end</span><span class="p">)</span>
+</code></pre></div>
+<p>The next thing to keep in mind is the position of the goal part. In the case where the goal part is constantly moving, how can you alter the current path of Dummy to make sure that it reaches the exact position of the goal part? You can do this by adding in 2 more events. </p>
+<p>The <code>Path.WaypointReached</code> event will compute a new Path everytime the Dummy reaches the next waypoint and accounts for a new position of the goal part if it changed.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">--If the position of Goal changes at the next waypoint, compute path again</span>
+<span class="n">Path</span><span class="p">.</span><span class="n">WaypointReached</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+    <span class="n">Path</span><span class="p">:</span><span class="n">Run</span><span class="p">(</span><span class="n">Goal</span><span class="p">)</span>
+<span class="kr">end</span><span class="p">)</span>
+</code></pre></div>
+<p>The second event is <code>Path.Error</code>. You can compute a new path every time the target becomes unreachable or the path to the goal is not traversable. For example, if the part is floating in the sky, the Dummy would not be able to reach it and <code>Path.Error</code> fires.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">--Dummmy knows to compute path again if an error occurs</span>
+<span class="n">Path</span><span class="p">.</span><span class="n">Error</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">errorType</span><span class="p">)</span>
+    <span class="n">Path</span><span class="p">:</span><span class="n">Run</span><span class="p">(</span><span class="n">Goal</span><span class="p">)</span>
+<span class="kr">end</span><span class="p">)</span>
+</code></pre></div>
+<p>Your code should look something like this after adding everything in:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">--Import the module so you can start using it</span>
+<span class="kd">local</span> <span class="n">ServerStorage</span> <span class="o">=</span> <span class="n">game</span><span class="p">:</span><span class="n">GetService</span><span class="p">(</span><span class="s2">&quot;ServerStorage&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">SimplePath</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="n">ServerStorage</span><span class="p">.</span><span class="n">SimplePath</span><span class="p">)</span>
+
+<span class="c1">--Define npc</span>
+<span class="kd">local</span> <span class="n">Dummy</span> <span class="o">=</span> <span class="n">workspace</span><span class="p">.</span><span class="n">Dummy</span>
+
+<span class="c1">-- Define a part called &quot;Goal&quot;</span>
+<span class="kd">local</span> <span class="n">Goal</span> <span class="o">=</span> <span class="n">workspace</span><span class="p">.</span><span class="n">Goal</span>
+
+<span class="c1">--Create a new Path using the Dummy</span>
+<span class="kd">local</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">SimplePath</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">Dummy</span><span class="p">)</span>
+
+<span class="c1">--Helps to visualize the path</span>
+<span class="n">Path</span><span class="p">.</span><span class="n">Visualize</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="c1">--Dummy knows to compute path again if something blocks the path</span>
+<span class="n">Path</span><span class="p">.</span><span class="n">Blocked</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+    <span class="n">Path</span><span class="p">:</span><span class="n">Run</span><span class="p">(</span><span class="n">Goal</span><span class="p">)</span>
+<span class="kr">end</span><span class="p">)</span>
+
+<span class="c1">--If the position of Goal changes at the next waypoint, compute path again</span>
+<span class="n">Path</span><span class="p">.</span><span class="n">WaypointReached</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+    <span class="n">Path</span><span class="p">:</span><span class="n">Run</span><span class="p">(</span><span class="n">Goal</span><span class="p">)</span>
+<span class="kr">end</span><span class="p">)</span>
+
+<span class="c1">--Dummmy knows to compute path again if an error occurs</span>
+<span class="n">Path</span><span class="p">.</span><span class="n">Error</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">errorType</span><span class="p">)</span>
+    <span class="n">Path</span><span class="p">:</span><span class="n">Run</span><span class="p">(</span><span class="n">Goal</span><span class="p">)</span>
+<span class="kr">end</span><span class="p">)</span>
+
+<span class="n">Path</span><span class="p">:</span><span class="n">Run</span><span class="p">(</span><span class="n">Goal</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<video width=100% height=100% controls>
+    <source style="object-fit: cover;" src="https://grayzcale.github.io/simplepath/assets/humanoid_example_1.mp4" types="video/mp4">
+</video>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Set <code>Path.Visualize</code> to <code>true</code> before the very first <code>Path:Run()</code> call to see the waypoints.</p>
+</div>
+<p>As you can see, the Dummy stops pathfinding after reaching the goal. If you want the Dummy to always follow the goal part even after reaching it, you can simply use the <code>Path.Reached</code> event:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">--Compute a new path every time the Dummy reaches the goal part</span>
+<span class="n">Path</span><span class="p">.</span><span class="n">Reached</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+    <span class="n">Path</span><span class="p">:</span><span class="n">Run</span><span class="p">(</span><span class="n">Goal</span><span class="p">)</span>
+<span class="kr">end</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+
+<h2 id="method-2-using-loops">Method 2: Using Loops<a class="headerlink" href="#method-2-using-loops" title="Permanent link">&para;</a></h2>
+<p>In the following tutorial, you will learn how to use SimplePath using loops instead of events.</p>
+<p>Using SimplePath in a loop is way simpler than using events. You only need 3 lines of code:
+<div class="highlight"><pre><span></span><code><span class="kr">while</span> <span class="kc">true</span> <span class="kr">do</span>
+    <span class="n">Path</span><span class="p">:</span><span class="n">Run</span><span class="p">(</span><span class="n">Goal</span><span class="p">)</span>
+<span class="kr">end</span>
+</code></pre></div></p>
+<p><code>Path:Run()</code> does not require a wait because it automatically yields if the maximum time elapsed between consecutive calls are less than <code>Settings.TIME_VARIANCE</code>.</p>
+<p>If you are using loops, your final code should look something like this:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">--Import the module so you can start using it</span>
+<span class="kd">local</span> <span class="n">ServerStorage</span> <span class="o">=</span> <span class="n">game</span><span class="p">:</span><span class="n">GetService</span><span class="p">(</span><span class="s2">&quot;ServerStorage&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">SimplePath</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="n">ServerStorage</span><span class="p">.</span><span class="n">SimplePath</span><span class="p">)</span>
+
+<span class="c1">--Define npc</span>
+<span class="kd">local</span> <span class="n">Dummy</span> <span class="o">=</span> <span class="n">workspace</span><span class="p">.</span><span class="n">Dummy</span>
+
+<span class="c1">-- Define a part called &quot;Goal&quot;</span>
+<span class="kd">local</span> <span class="n">Goal</span> <span class="o">=</span> <span class="n">workspace</span><span class="p">.</span><span class="n">Goal</span>
+
+<span class="c1">--Create a new Path using the Dummy</span>
+<span class="kd">local</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">SimplePath</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">Dummy</span><span class="p">)</span>
+
+<span class="c1">--Helps to visualize the path</span>
+<span class="n">Path</span><span class="p">.</span><span class="n">Visualize</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="kr">while</span> <span class="kc">true</span> <span class="kr">do</span>
+    <span class="n">Path</span><span class="p">:</span><span class="n">Run</span><span class="p">(</span><span class="n">Goal</span><span class="p">)</span>
+<span class="kr">end</span>
+</code></pre></div></td></tr></table></div>
+<hr>
+
+<h2 id="choosing-the-right-method">Choosing the right method<a class="headerlink" href="#choosing-the-right-method" title="Permanent link">&para;</a></h2>
+<p>SimplePath gives you the freedom to code in any method you prefer. You are not limited to the two methods mentioned in this tutorial as they are simply meant to be examples. You can even combine both methods and implement them together at once. It all depends on how you decide to structure your code based on the performance, compatibility, etc. and personal preference.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+    
+  </body>
+</html>
