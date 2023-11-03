@@ -2,7 +2,7 @@
 -------------------------------------------------------------------
 
 Created by: @V3N0M_Z
-Reference: https://v3n0m-z.github.io/RBLX-SimplePath/
+Reference: https://github.com/grayzcale/simplepath
 License: MIT
 
 ---------------------------------------------------------------------
@@ -15,6 +15,10 @@ local DEFAULT_SETTINGS = {
 	COMPARISON_CHECKS = 1;
 
 	JUMP_WHEN_STUCK = true;
+
+	ENABLE_WARNINGS = {
+		STOP_IDLE = false
+	}
 }
 
 ---------------------------------------------------------------------
@@ -257,9 +261,11 @@ function Path:Stop()
 		return
 	end
 	if self._status == Path.StatusType.Idle then
-		output(function(m)
-			warn(debug.traceback(m))
-		end, "Attempt to run Path:Stop() in idle state")
+		if self._settings["ENABLE_WARNINGS"]["STOP_IDLE"] then
+			output(function(m)
+				warn(debug.traceback(m))
+			end, "Attempt to run Path:Stop() in idle state")
+		end
 		return
 	end
 	disconnectMoveConnection(self)
